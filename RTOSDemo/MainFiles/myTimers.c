@@ -56,42 +56,42 @@ void startTimerForLCD(vtLCDStruct *vtLCDdata) {
 }
 
 /* *********************************************************** */
-// Functions for the Temperature Task related timer
+// Functions for the Sensor Task related timer
 //
 // how often the timer that sends messages to the LCD task should run
 // Set the task up to run every 500 ms
-#define tempWRITE_RATE_BASE	( ( portTickType ) 500 / portTICK_RATE_MS)
+#define sensorWRITE_RATE_BASE	( ( portTickType ) 500 / portTICK_RATE_MS)
 
-// Callback function that is called by the TemperatureTimer
-//   Sends a message to the queue that is read by the Temperature Task
-void TempTimerCallback(xTimerHandle pxTimer)
+// Callback function that is called by the SensorTimer
+//   Sends a message to the queue that is read by the Sensor Task
+void SensorTimerCallback(xTimerHandle pxTimer)
 {
 	if (pxTimer == NULL) {
 		VT_HANDLE_FATAL_ERROR(0);
 	} else {
 		// When setting up this timer, I put the pointer to the 
-		//   Temperature structure as the "timer ID" so that I could access
+		//   Sensor structure as the "timer ID" so that I could access
 		//   that structure here -- which I need to do to get the 
 		//   address of the message queue to send to 
-		vtTempStruct *ptr = (vtTempStruct *) pvTimerGetTimerID(pxTimer);
+		vtSensorStruct *ptr = (vtSensorStruct *) pvTimerGetTimerID(pxTimer);
 		// Make this non-blocking *but* be aware that if the queue is full, this routine
 		// will not care, so if you care, you need to check something
-		if (SendTempTimerMsg(ptr,tempWRITE_RATE_BASE,0) == errQUEUE_FULL) {
+		if (SendSensorTimerMsg(ptr,sensorWRITE_RATE_BASE,0) == errQUEUE_FULL) {
 			// Here is where you would do something if you wanted to handle the queue being full
 			VT_HANDLE_FATAL_ERROR(0);
 		}
 	}
 }
 
-void startTimerForTemperature(vtTempStruct *vtTempdata) {
-	if (sizeof(long) != sizeof(vtTempStruct *)) {
+void startTimerForSensor(vtSensorStruct *vtSensordata) {
+	if (sizeof(long) != sizeof(vtSensorStruct *)) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
-	xTimerHandle TempTimerHandle = xTimerCreate((const signed char *)"Temp Timer",tempWRITE_RATE_BASE,pdTRUE,(void *) vtTempdata,TempTimerCallback);
-	if (TempTimerHandle == NULL) {
+	xTimerHandle sensorTimerHandle = xTimerCreate((const signed char *)"Temp Timer",sensorWRITE_RATE_BASE,pdTRUE,(void *) vtSensordata,SensorTimerCallback);
+	if (sensorTimerHandle == NULL) {
 		VT_HANDLE_FATAL_ERROR(0);
 	} else {
-		if (xTimerStart(TempTimerHandle,0) != pdPASS) {
+		if (xTimerStart(sensorTimerHandle,0) != pdPASS) {
 			VT_HANDLE_FATAL_ERROR(0);
 		}
 	}

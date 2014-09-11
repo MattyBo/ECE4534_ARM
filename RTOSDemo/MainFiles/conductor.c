@@ -12,7 +12,7 @@
 /* include files. */
 #include "vtUtilities.h"
 #include "vtI2C.h"
-#include "i2cTemp.h"
+#include "i2cSensor.h"
 #include "I2CTaskMsgTypes.h"
 #include "conductor.h"
 
@@ -77,20 +77,12 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		//   other Q/tasks for other message types
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
-		case vtI2CMsgTypeTempInit: {
+		case vtI2CMsgTypeSensorInit: {
 			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
 			break;
 		}
-		case vtI2CMsgTypeTempRead1: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead2: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead3: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
+		case vtI2CMsgTypeSensorRead1: {
+			SendSensorValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
 			break;
 		}
 		default: {

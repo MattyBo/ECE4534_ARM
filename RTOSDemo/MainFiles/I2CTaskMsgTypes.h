@@ -7,10 +7,8 @@
 //
 // I have defined them all here so that they are unique
 
-#define vtI2CMsgTypeTempInit 1
-#define vtI2CMsgTypeTempRead1 2
-#define vtI2CMsgTypeTempRead2 3
-#define vtI2CMsgTypeTempRead3 4
+#define vtI2CMsgTypeSensorInit 1
+#define vtI2CMsgTypeSensorRead1 2
 // below is not actually an i2c message, but the value is reserved
-#define TempMsgTypeTimer 5 
+#define SensorMsgTypeTimer 5 
 #endif

@@ -18,4 +18,5 @@ ObjectFiles/mytimers.o: MainFiles/myTimers.c \
  MainFiles/myTimers.h MainFiles/lcdTask.h MainFiles/i2cTemp.h \
  ../vtCode/vtI2C/vtI2C.h ../NXPDrivers/include/lpc17xx_i2c.h \
  ../NXPDrivers/include/lpc_types.h ../FreeRTOS/Source/include/projDefs.h \
- ../FreeRTOS/Source/include/semphr.h ../FreeRTOS/Source/include/queue.h
+ ../FreeRTOS/Source/include/semphr.h ../FreeRTOS/Source/include/queue.h \
+ MainFiles/i2cSensor.h
