@@ -25,6 +25,7 @@
 #endif
 
 // definitions and data structures that are private to this file
+#define Y_GRAPH_SPACE 210
 // Length of the queue to this task
 #define vtLCDQLen 10 
 // a timer message -- not to be printed
@@ -96,6 +97,19 @@ portBASE_TYPE SendLCDPrintMsg(vtLCDStruct *lcdData,int length,char *pString,port
 	return(xQueueSend(lcdData->inQ,(void *) (&lcdBuffer),ticksToBlock));
 }
 
+portBASE_TYPE SendLCDGraphMsg(vtLCDStruct *lcdData,int y,portTickType ticksToBlock)
+{
+	if (lcdData == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	}
+	vtLCDMsg lcdBuffer;
+
+	lcdBuffer.length = 1;
+	lcdBuffer.msgType = LCDMsgTypeGraph;
+	lcdBuffer.buf[0] = y;
+	return(xQueueSend(lcdData->inQ,(void *) (&lcdBuffer),ticksToBlock));
+}
+
 // Private routines used to unpack the message buffers
 //   I do not want to access the message buffer data structures outside of these routines
 portTickType unpackTimerMsg(vtLCDMsg *lcdBuffer)
@@ -143,7 +157,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	#if LCD_EXAMPLE_OP==0
 	unsigned short screenColor = 0;
 	unsigned short tscr;
-	unsigned int x = 0, y = 210;
+	unsigned int x = 0, y = Y_GRAPH_SPACE;
 	#elif LCD_EXAMPLE_OP==1
 	unsigned char picIndex = 0;
 	#else
@@ -229,16 +243,15 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			break;
 		}
 		case LCDMsgTypeGraph: {
+			y = Y_GRAPH_SPACE - msgBuffer.buf[0];
 		 	GLCD_WindowMax();	
 			GLCD_PutPixel(x, y);
 			
 			x++;
-			//y--;
-			if (x == WIDTH || y == 0) {
+			if (x == WIDTH) {
 				// Clear the current graph
-				GLCD_ClearWindow(0,0,WIDTH,211,screenColor);	  
+				GLCD_ClearWindow(0,0,WIDTH,Y_GRAPH_SPACE,screenColor);	  
 				x = 0;
-				y = 210;
 			}
 			break;
 		}

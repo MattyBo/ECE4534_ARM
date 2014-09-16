@@ -371,8 +371,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>126</TopLine>
-      <CurrentLine>126</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtUtilities.c</PathWithFileName>
       <FilenameWithoutPath>vtUtilities.c</FilenameWithoutPath>
@@ -397,10 +397,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>9</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>129</TopLine>
-      <CurrentLine>132</CurrentLine>
+      <TopLine>217</TopLine>
+      <CurrentLine>243</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/LCDtask.c</PathWithFileName>
       <FilenameWithoutPath>LCDtask.c</FilenameWithoutPath>
@@ -411,10 +411,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>26</ColumnNumber>
+      <ColumnNumber>53</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>103</TopLine>
-      <CurrentLine>121</CurrentLine>
+      <CurrentLine>105</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -427,8 +427,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>70</TopLine>
-      <CurrentLine>72</CurrentLine>
+      <TopLine>32</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
@@ -439,10 +439,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>57</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>180</TopLine>
-      <CurrentLine>203</CurrentLine>
+      <TopLine>53</TopLine>
+      <CurrentLine>62</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/i2cInfrared.c</PathWithFileName>
       <FilenameWithoutPath>i2cInfrared.c</FilenameWithoutPath>
@@ -1004,8 +1004,8 @@
 
   <AlienFiles>
     <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</PathWithFilename>
-    <TopLine>26</TopLine>
-    <CurrentLine>37</CurrentLine>
+    <TopLine>23</TopLine>
+    <CurrentLine>24</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1085,13 +1085,13 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>7</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
           <Name>.\MainFiles/myTimers.c</Name>
-          <ColumnNumber>26</ColumnNumber>
-          <TopLine>103</TopLine>
-          <CurrentLine>121</CurrentLine>
+          <ColumnNumber>48</ColumnNumber>
+          <TopLine>109</TopLine>
+          <CurrentLine>132</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</Name>
@@ -1114,8 +1114,8 @@
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</Name>
           <ColumnNumber>77</ColumnNumber>
-          <TopLine>26</TopLine>
-          <CurrentLine>37</CurrentLine>
+          <TopLine>23</TopLine>
+          <CurrentLine>24</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/main.c</Name>
@@ -1131,15 +1131,15 @@
         </Doc>
         <Doc>
           <Name>.\MainFiles/LCDtask.c</Name>
-          <ColumnNumber>22</ColumnNumber>
-          <TopLine>206</TopLine>
-          <CurrentLine>214</CurrentLine>
+          <ColumnNumber>72</ColumnNumber>
+          <TopLine>205</TopLine>
+          <CurrentLine>231</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/i2cInfrared.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>53</TopLine>
-          <CurrentLine>62</CurrentLine>
+          <ColumnNumber>60</ColumnNumber>
+          <TopLine>71</TopLine>
+          <CurrentLine>71</CurrentLine>
         </Doc>
         <Doc>
           <Name>../vtCode/vtLCD/GLCD_SPI_LPC1700.c</Name>

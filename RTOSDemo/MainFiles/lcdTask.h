@@ -50,6 +50,13 @@ portBASE_TYPE SendLCDTimerMsg(vtLCDStruct *lcdData,portTickType ticksElapsed,por
 // Return:
 //   Result of the call to xQueueSend()
 portBASE_TYPE SendLCDPrintMsg(vtLCDStruct *lcdData,int length,char *pString,portTickType ticksToBlock);
+
+// Send a y value to the LCD task for it to print
+// Args:
+//	lcdData -- a pointer to a variable of type vtLCDStruct
+//	y -- the y value of the point to graph (x is determined by the LCD task)
+//	ticksToBlock -- how long the routine should wait if the queue is full
+portBASE_TYPE SendLCDGraphMsg(vtLCDStruct *lcdData,int y,portTickType ticksToBlock);
 /* ********************************************************************* */
 
 

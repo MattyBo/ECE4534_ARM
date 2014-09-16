@@ -188,16 +188,21 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 				distance = getValue(&msgBuffer);
 				
 				#if PRINTF_VERSION == 1
-				printf("Distance %f units\n",distance);
-				sprintf(lcdBuffer,"d= %f units",distance);
+				printf("Distance %f cm\n",distance);
+				sprintf(lcdBuffer,"d= %f cm",distance);
 				#else
 				// we do not have full printf (so no %f) and therefore need to print out integers
-				printf("Distance %d units\n",lrint(distance));
-				sprintf(lcdBuffer,"d=%d units",lrint(distance));
+				printf("Distance %d cm\n",lrint(distance));
+				sprintf(lcdBuffer,"d=%d cm",lrint(distance));
 				#endif
 				if (lcdData != NULL) {
 					if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
 						VT_HANDLE_FATAL_ERROR(0);
+					}
+					if (distance != 0) {
+						if (SendLCDGraphMsg(lcdData,distance,portMAX_DELAY) != pdTRUE) {
+							VT_HANDLE_FATAL_ERROR(0);
+						}
 					}
 				}
 			} else {
