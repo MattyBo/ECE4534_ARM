@@ -11,6 +11,8 @@
 /* include files. */
 #include "lpc17xx_i2c.h"
 #include "vtUtilities.h"
+#include "lpc17xx_gpio.h"
+
 
 #include "lpc17xx_libcfg_default.h"
 #include "lpc17xx_pinsel.h"

@@ -16,6 +16,8 @@
 #include "i2cTemp.h"
 #include "I2CTaskMsgTypes.h"
 
+#include "lpc17xx_gpio.h"
+
 /* *********************************************** */
 // definitions and data structures that are private to this file
 // Length of the queue to this task
@@ -174,6 +176,7 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 			break;
 		}
 		case TempMsgTypeTimer: {
+			GPIO_SetValue(0, 0x8000);
 			// Timer messages never change the state, they just cause an action (or not) 
 			if ((currentState != fsmStateInit1Sent) && (currentState != fsmStateInit2Sent)) {
 				// Read in the values from the temperature sensor
@@ -194,9 +197,11 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 			} else {
 				// just ignore timer messages until initialization is complete
 			} 
+			GPIO_ClearValue(0, 0x8000);
 			break;
 		}
 		case vtI2CMsgTypeTempRead1: {
+			//GPIO_SetValue(0, 0x40);
 			if (currentState == fsmStateTempRead1) {
 				currentState = fsmStateTempRead2;
 				temperature = getValue(&msgBuffer);
@@ -204,6 +209,7 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 				// unexpectedly received this message
 				VT_HANDLE_FATAL_ERROR(0);
 			}
+			//GPIO_SetValue(0,0x40);
 			break;
 		}
 		case vtI2CMsgTypeTempRead2: {
@@ -218,6 +224,7 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 		}
 		case vtI2CMsgTypeTempRead3: {
 			if (currentState == fsmStateTempRead3) {
+				//GPIO_SetValue(0,0x8000);
 				currentState = fsmStateTempRead1;
 				countPerC = getValue(&msgBuffer);
 
@@ -238,6 +245,7 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 						VT_HANDLE_FATAL_ERROR(0);
 					}
 				}
+				//GPIO_ClearValue(0,0x8000);
 			} else {
 				// unexpectedly received this message
 				VT_HANDLE_FATAL_ERROR(0);

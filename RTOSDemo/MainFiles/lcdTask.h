@@ -18,6 +18,9 @@ typedef struct __vtLCDStruct {
 // Structure used to define the messages that are sent to the LCD thread
 //   the maximum length of a message to be printed is the size of the "buf" field below
 #define vtLCDMaxLen 20
+// Width and height of the LCD screen (taken from GLCD_SPI_LPC1700.c)
+#define WIDTH 320
+#define HEIGHT 240
 
 /* ********************************************************************* */
 // The following are the public API calls that other tasks should use to work with the LCD task

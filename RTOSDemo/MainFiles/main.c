@@ -93,7 +93,9 @@ You should read the note above.
 #define USE_MTJ_LCD 1
 // Define whether to use my temperature sensor read task (the sensor is on the PIC v4 demo board, so if that isn't connected
 //   then this should be off
-#define USE_MTJ_V4Temp_Sensor 1
+#define USE_MTJ_V4Temp_Sensor 0
+// Define whether to use my infrared sensor task
+#define USE_INFRARED_SENSOR 1
 // Define whether to use my USB task
 #define USE_MTJ_USE_USB 0
 
@@ -117,6 +119,7 @@ You should read the note above.
 #include "vtUtilities.h"
 #include "lcdTask.h"
 #include "i2cTemp.h"
+#include "i2cInfrared.h"
 #include "vtI2C.h"
 #include "myTimers.h"
 #include "conductor.h"
@@ -142,6 +145,7 @@ tick hook). */
 #define mainFLASH_TASK_PRIORITY				( tskIDLE_PRIORITY)
 #define mainLCD_TASK_PRIORITY				( tskIDLE_PRIORITY)
 #define mainI2CTEMP_TASK_PRIORITY			( tskIDLE_PRIORITY)
+#define mainI2CSENSOR_TASK_PRIORITY			( tskIDLE_PRIORITY)
 #define mainUSB_TASK_PRIORITY				( tskIDLE_PRIORITY)
 #define mainI2CMONITOR_TASK_PRIORITY		( tskIDLE_PRIORITY)
 #define mainCONDUCTOR_TASK_PRIORITY			( tskIDLE_PRIORITY)
@@ -188,6 +192,15 @@ static char *pcStatusMessage = mainPASS_STATUS_MESSAGE;
 static vtI2CStruct vtI2C0;
 // data structure required for one temperature sensor task
 static vtTempStruct tempSensorData;
+// data structure required for conductor task
+static vtConductorStruct conductorData;
+#endif
+
+#if USE_INFRARED_SENSOR == 1
+// data structure required for one I2C task
+static vtI2CStruct vtI2C0;
+// data structure required for one temperature sensor task
+static vtInfraredStruct infraredSensorData;
 // data structure required for conductor task
 static vtConductorStruct conductorData;
 #endif
@@ -240,24 +253,24 @@ int main( void )
 	startTimerForLCD(&vtLCDdata);
 	#endif
 	
-	#if USE_MTJ_V4Temp_Sensor == 1
-	// MTJ: My i2cTemp demonstration task
+	#if USE_INFRARED_SENSOR == 1
+	// MTJ: My i2cSensor task
 	// First, start up an I2C task and associate it with the I2C0 hardware on the ARM (there are 3 I2C devices, we need this one)
 	// See vtI2C.h & vtI2C.c for more details on this task and the API to access the task
 	// Initialize I2C0 for I2C0 at an I2C clock speed of 100KHz
 	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000) != vtI2CInitSuccess) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
-	// Now, start up the task that is going to handle the temperature sensor sampling (it will talk to the I2C task and LCD task using their APIs)
+	// Now, start up the task that is going to handle the infrared sensor sampling (it will talk to the I2C task and LCD task using their APIs)
 	#if USE_MTJ_LCD == 1
-	vStarti2cTempTask(&tempSensorData,mainI2CTEMP_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
 	#else
-	vStarti2cTempTask(&tempSensorData,mainI2CTEMP_TASK_PRIORITY,&vtI2C0,NULL);
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
 	#endif
-	// Here we set up a timer that will send messages to the Temperature sensing task.  The timer will determine how often the sensor is sampled
-	startTimerForTemperature(&tempSensorData);
+	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
+	startTimerForInfrared(&infraredSensorData);
 	// start up a "conductor" task that will move messages around
-	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&tempSensorData);
+	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData);
 	#endif
 
     /* Create the USB task. MTJ: This routine has been modified from the original example (which is not a FreeRTOS standard demo) */

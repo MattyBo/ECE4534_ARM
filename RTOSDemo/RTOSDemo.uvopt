@@ -144,7 +144,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>(105=611,204,1280,551,0)(106=524,541,1280,848,0)(107=950,563,1280,741,0)</Name>
+          <Name>(105=607,204,1276,551,0)(106=520,346,1276,653,0)(107=946,475,1276,653,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,9 +159,41 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>-UM0515BUE -O974 -S8 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO3 -TC100000000 -TP21 -TDS804F -TDT0 -TDC10 -TIE1 -TIP0 -FO23 -FD10000000 -FC800 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000</Name>
+          <Name>-UM0102MBE -O974 -S8 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO3 -TC100000000 -TP21 -TDS804F -TDT0 -TDC10 -TIE1 -TIP0 -FO23 -FD10000000 -FC800 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>175</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\i2cInfrared.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>187</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>11922</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename></Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\RTOSDemo\MainFiles/i2cInfrared.c\187</Expression>
+        </Bp>
+      </Breakpoint>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
@@ -309,10 +341,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>12</ColumnNumber>
+      <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>240</TopLine>
-      <CurrentLine>240</CurrentLine>
+      <TopLine>249</TopLine>
+      <CurrentLine>271</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -323,10 +355,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>46</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>157</TopLine>
+      <CurrentLine>157</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/i2cTemp.c</PathWithFileName>
       <FilenameWithoutPath>i2cTemp.c</FilenameWithoutPath>
@@ -365,10 +397,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>9</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>3</CurrentLine>
+      <TopLine>217</TopLine>
+      <CurrentLine>243</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/LCDtask.c</PathWithFileName>
       <FilenameWithoutPath>LCDtask.c</FilenameWithoutPath>
@@ -379,10 +411,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>53</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>103</TopLine>
+      <CurrentLine>105</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -395,11 +427,25 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>32</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>53</TopLine>
+      <CurrentLine>62</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\MainFiles/i2cInfrared.c</PathWithFileName>
+      <FilenameWithoutPath>i2cInfrared.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -428,7 +474,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>37</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -834,10 +880,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>861</TopLine>
+      <CurrentLine>870</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtLCD/GLCD_SPI_LPC1700.c</PathWithFileName>
       <FilenameWithoutPath>GLCD_SPI_LPC1700.c</FilenameWithoutPath>
@@ -944,17 +990,95 @@
       <GroupNumber>9</GroupNumber>
       <FileNumber>48</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>73</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>146</TopLine>
+      <CurrentLine>158</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtI2C/vtI2C.c</PathWithFileName>
       <FilenameWithoutPath>vtI2C.c</FilenameWithoutPath>
     </File>
   </Group>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</PathWithFilename>
+    <TopLine>23</TopLine>
+    <CurrentLine>24</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\I2CTaskMsgTypes.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>15</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</PathWithFilename>
+    <TopLine>42</TopLine>
+    <CurrentLine>68</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
 
   <MDIGroups>
     <Orientation>1</Orientation>
@@ -964,10 +1088,70 @@
       <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
+          <Name>.\MainFiles/myTimers.c</Name>
+          <ColumnNumber>48</ColumnNumber>
+          <TopLine>109</TopLine>
+          <CurrentLine>132</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</Name>
+          <ColumnNumber>54</ColumnNumber>
+          <TopLine>42</TopLine>
+          <CurrentLine>68</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/i2cTemp.c</Name>
+          <ColumnNumber>46</ColumnNumber>
+          <TopLine>157</TopLine>
+          <CurrentLine>157</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
+          <ColumnNumber>35</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>15</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</Name>
+          <ColumnNumber>77</ColumnNumber>
+          <TopLine>23</TopLine>
+          <CurrentLine>24</CurrentLine>
+        </Doc>
+        <Doc>
           <Name>.\MainFiles/main.c</Name>
-          <ColumnNumber>12</ColumnNumber>
-          <TopLine>240</TopLine>
-          <CurrentLine>240</CurrentLine>
+          <ColumnNumber>22</ColumnNumber>
+          <TopLine>249</TopLine>
+          <CurrentLine>271</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/conductor.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>32</TopLine>
+          <CurrentLine>32</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/LCDtask.c</Name>
+          <ColumnNumber>72</ColumnNumber>
+          <TopLine>205</TopLine>
+          <CurrentLine>231</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/i2cInfrared.c</Name>
+          <ColumnNumber>60</ColumnNumber>
+          <TopLine>71</TopLine>
+          <CurrentLine>71</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>../vtCode/vtLCD/GLCD_SPI_LPC1700.c</Name>
+          <ColumnNumber>19</ColumnNumber>
+          <TopLine>861</TopLine>
+          <CurrentLine>870</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>../vtCode/vtI2C/vtI2C.c</Name>
+          <ColumnNumber>73</ColumnNumber>
+          <TopLine>146</TopLine>
+          <CurrentLine>158</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

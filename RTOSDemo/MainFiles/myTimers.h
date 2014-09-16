@@ -2,6 +2,8 @@
 #define _MY_TIMERS_H
 #include "lcdTask.h"
 #include "i2cTemp.h"
+#include "i2cInfrared.h"
 void startTimerForLCD(vtLCDStruct *vtLCDdata);
 void startTimerForTemperature(vtTempStruct *vtTempdata);
+void startTimerForInfrared(vtInfraredStruct *vtInfraredData);
 #endif

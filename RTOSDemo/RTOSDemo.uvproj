@@ -361,6 +361,11 @@
               <FileType>1</FileType>
               <FilePath>.\MainFiles/conductor.c</FilePath>
             </File>
+            <File>
+              <FileName>i2cInfrared.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/i2cInfrared.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

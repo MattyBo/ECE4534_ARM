@@ -9,6 +9,10 @@
 #include "LCDtask.h"
 #include "myTimers.h"
 
+// Set the rate at which we query the infrared sensor
+// the units are # of reads / sec
+#define INFRARED_QUERY_RATE (16 / 8)
+
 /* **************************************************************** */
 // WARNING: Do not print in this file -- the stack is not large enough for this task
 /* **************************************************************** */
@@ -92,6 +96,48 @@ void startTimerForTemperature(vtTempStruct *vtTempdata) {
 		VT_HANDLE_FATAL_ERROR(0);
 	} else {
 		if (xTimerStart(TempTimerHandle,0) != pdPASS) {
+			VT_HANDLE_FATAL_ERROR(0);
+		}
+	}
+}
+
+/* *********************************************************** */
+// Functions for the Infrared Sensor Task related timer
+//
+// how often the timer that sends messages to the LCD task should run
+// Set the task up to run every 500 ms
+#define infraredWRITE_RATE_BASE	( ( portTickType ) (1000 / INFRARED_QUERY_RATE) / portTICK_RATE_MS)
+
+// Callback function that is called by the InfraredTimer
+//   Sends a message to the queue that is read by the Infrared Task
+void InfraredTimerCallback(xTimerHandle pxTimer)
+{
+	if (pxTimer == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	} else {
+		// When setting up this timer, I put the pointer to the 
+		//   Sensor structure as the "timer ID" so that I could access
+		//   that structure here -- which I need to do to get the 
+		//   address of the message queue to send to 
+		vtInfraredStruct *ptr = (vtInfraredStruct *) pvTimerGetTimerID(pxTimer);
+		// Make this non-blocking *but* be aware that if the queue is full, this routine
+		// will not care, so if you care, you need to check something
+		if (SendInfraredTimerMsg(ptr,infraredWRITE_RATE_BASE,0) == errQUEUE_FULL) {
+			// Here is where you would do something if you wanted to handle the queue being full
+			VT_HANDLE_FATAL_ERROR(0);
+		}
+	}
+}
+
+void startTimerForInfrared(vtInfraredStruct *vtInfraredData) {
+	if (sizeof(long) != sizeof(vtInfraredStruct *)) {
+		VT_HANDLE_FATAL_ERROR(0);
+	}
+	xTimerHandle InfraredTimerHandle = xTimerCreate((const signed char *)"Infrared Timer",infraredWRITE_RATE_BASE,pdTRUE,(void *) vtInfraredData,InfraredTimerCallback);
+	if (InfraredTimerHandle == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	} else {
+		if (xTimerStart(InfraredTimerHandle,0) != pdPASS) {
 			VT_HANDLE_FATAL_ERROR(0);
 		}
 	}

@@ -12,7 +12,7 @@
 /* include files. */
 #include "vtUtilities.h"
 #include "vtI2C.h"
-#include "i2cTemp.h"
+#include "i2cInfrared.h"
 #include "I2CTaskMsgTypes.h"
 #include "conductor.h"
 
@@ -36,12 +36,12 @@ static portTASK_FUNCTION_PROTO( vConductorUpdateTask, pvParameters );
 
 /*-----------------------------------------------------------*/
 // Public API
-void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtTempStruct *temperature)
+void vStartConductorTask(vtConductorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtInfraredStruct *data)
 {
 	/* Start the task */
 	portBASE_TYPE retval;
 	params->dev = i2c;
-	params->tempData = temperature;
+	params->infraredData = data;
 	if ((retval = xTaskCreate( vConductorUpdateTask, ( signed char * ) "Conductor", conSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
 		VT_HANDLE_FATAL_ERROR(retval);
 	}
@@ -61,7 +61,7 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 	// Get the I2C device pointer
 	vtI2CStruct *devPtr = param->dev;
 	// Get the LCD information pointer
-	vtTempStruct *tempData = param->tempData;
+	vtInfraredStruct *infraredData = param->infraredData;
 	uint8_t recvMsgType;
 
 	// Like all good tasks, this should never exit
@@ -77,20 +77,12 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		//   other Q/tasks for other message types
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
-		case vtI2CMsgTypeTempInit: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
+		case vtI2CMsgTypeSensorInit: {
+			SendInfraredValueMsg(infraredData,recvMsgType,(*valPtr),portMAX_DELAY);
 			break;
 		}
-		case vtI2CMsgTypeTempRead1: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead2: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
-			break;
-		}
-		case vtI2CMsgTypeTempRead3: {
-			SendTempValueMsg(tempData,recvMsgType,(*valPtr),portMAX_DELAY);
+		case vtI2CMsgTypeSensorRead: {
+			SendInfraredValueMsg(infraredData,recvMsgType,(*valPtr),portMAX_DELAY);
 			break;
 		}
 		default: {
@@ -98,8 +90,5 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 			break;
 		}
 		}
-
-
 	}
 }
-

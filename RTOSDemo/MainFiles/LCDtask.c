@@ -31,6 +31,8 @@
 #define LCDMsgTypeTimer 1
 // a message to be printed
 #define LCDMsgTypePrint 2
+// sensor data to be graphed
+#define LCDMsgTypeGraph 3
 // actual data structure that is sent in a message
 typedef struct __vtLCDMsg {
 	uint8_t msgType;
@@ -129,10 +131,9 @@ void copyMsgString(char *target,vtLCDMsg *lcdBuffer,int targetMaxLen)
 
 static unsigned short hsl2rgb(float H,float S,float L);
 
-#if LCD_EXAMPLE_OP==0
+#if LCD_EXAMPLE_OP==1
 // Buffer in which to store the memory read from the LCD
-	#define MAX_RADIUS 15
-	#define BUF_LEN (((MAX_RADIUS*2)+1)*((MAX_RADIUS*2)+1))
+	#define BUF_LEN (((15*2)+1)*((15*2)+1))
 	static unsigned short int buffer[BUF_LEN];
 #endif
 
@@ -142,13 +143,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	#if LCD_EXAMPLE_OP==0
 	unsigned short screenColor = 0;
 	unsigned short tscr;
-	unsigned char curLine;
-	unsigned timerCount = 0;
-	int xoffset = 0, yoffset = 0;
-	unsigned int xmin=0, xmax=0, ymin=0, ymax=0;
-	unsigned int x, y;
-	int i;
-	float hue=0, sat=0.2, light=0.2;
+	unsigned int x = 0, y = 210;
 	#elif LCD_EXAMPLE_OP==1
 	unsigned char picIndex = 0;
 	#else
@@ -181,8 +176,8 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 
 	/* Initialize the LCD and set the initial colors */
 	GLCD_Init();
-	tscr = Green; // may be reset in the LCDMsgTypeTimer code below
-	screenColor = Red; // may be reset in the LCDMsgTypeTimer code below
+	tscr = White; // may be reset in the LCDMsgTypeTimer code below
+	screenColor = Black; // may be reset in the LCDMsgTypeTimer code below
 	GLCD_SetTextColor(tscr);
 	GLCD_SetBackColor(screenColor);
 	GLCD_Clear(screenColor);
@@ -193,7 +188,6 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	srand((unsigned) 55); // initialize the random number generator to the same seed for repeatability
 	#endif
 
-	curLine = 5;
 	// This task should never exit
 	for(;;)
 	{	
@@ -224,106 +218,27 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			char   lineBuffer[lcdCHAR_IN_LINE+1];
 			copyMsgString(lineBuffer,&msgBuffer,lcdCHAR_IN_LINE);
 			// clear the line
-			GLCD_ClearLn(curLine,1);
+			GLCD_ClearLn(9,1);
 			// show the text
-			GLCD_DisplayString(curLine,0,1,(unsigned char *)lineBuffer);
-			curLine++;
-			if (curLine == lcdNUM_LINES) {
-				curLine = 5;
-			}
+			GLCD_DisplayString(9,0,1,(unsigned char *)lineBuffer);
+
 			break;
 		}
-		case LCDMsgTypeTimer: {
-			// Note: if I cared how long the timer update was I would call my routine
-			//    unpackTimerMsg() which would unpack the message and get that value
-			// Each timer update will cause a circle to be drawn on the top half of the screen
-			//   as explained below
+		case LCDMsgTypeTimer: {	
 			
-			if (timerCount == 0) {
-				/* ************************************************** */
-				// Find a new color for the screen by randomly (within limits) selecting HSL values
-				// This can be ignored unless you care about the color map
-				#if MALLOC_VERSION==1
-				hue = rand() % 360;
-				sat = (rand() % 1024) / 1023.0; sat = sat * 0.5; sat += 0.5;
-				light = (rand() % 1024) / 1023.0;	light = light * 0.8; light += 0.10;
-				#else
-				hue = (hue + 1); if (hue >= 360) hue = 0;
-				sat+=0.01; if (sat > 1.0) sat = 0.20;	
-				light+=0.03; if (light > 1.0) light = 0.20;
-				#endif
-				screenColor = hsl2rgb(hue,sat,light);
-				// Now choose a complementary value for the text color
-				hue += 180;
-				if (hue >= 360) hue -= 360;
-				tscr = hsl2rgb(hue,sat,light);
-				GLCD_SetTextColor(tscr);
-				GLCD_SetBackColor(screenColor);
+			break;
+		}
+		case LCDMsgTypeGraph: {
+		 	GLCD_WindowMax();	
+			GLCD_PutPixel(x, y);
 			
-				unsigned short int *tbuffer = buffer;
-				//int i;
-				for(i = BUF_LEN; i--;) {
-					tbuffer[i] = screenColor;
-				}
-				// End of playing around with figuring out a random color
-				/* ************************************************** */
-
-				// clear the top half of the screen
-				GLCD_ClearWindow(0,0,320,120,screenColor); 
-
-				// Now we are going to draw a circle in the buffer
-				// count is how many pixels are in the circle
-				int	count = 50;
-				float radius;
-				float inc, val, offset = MAX_RADIUS;
-				unsigned short circleColor;
-				inc = 2*M_PI/count;
-				xmax = 0;
-				ymax = 0;
-				xmin = 50000;
-				ymin = 50000;
-				val = 0.0;
-				for (i=0;i<count;i++) {
-					// Make the circle a little thicker
-					// by actually drawing three circles w/ different radii
-					float cv = cos(val), sv=sin(val);
-					circleColor = (val*0xFFFF)/(2*M_PI);
-					GLCD_SetTextColor(circleColor);
-					for (radius=MAX_RADIUS-2.0;radius<=MAX_RADIUS;radius+=1.0) {
-						x = round(cv*radius+offset);
-						y = round(sv*radius+offset);
-						if (x > xmax) xmax = x;
-						if (y > ymax) ymax = y;
-						if (x < xmin) xmin = x;
-						if (y < ymin) ymin = y;
-						tbuffer[(y*((MAX_RADIUS*2)+1)) + x] = circleColor;
-					}
-					val += inc;
-				}
-			} else {
-				// We are going to write out the buffer
-				//   back onto the screen at a new location
-				// This is *very* fast
-
-				// First, clear out where we were
-				GLCD_ClearWindow(xoffset,yoffset,xmax+1-xmin,ymax+1-ymin,screenColor);
-				// Pick the new location
-				#if MALLOC_VERSION==1
-				xoffset = rand() % (320-(xmax+1-xmin));
-				yoffset = rand() % (120-(ymax+1-ymin));
-				#else
-				xoffset = (xoffset + 10) % (320-(xmax+1-xmin));
-				yoffset = (yoffset + 10) % (120-(ymax+1-ymin));
-				#endif
-				// Draw the bitmap
-				GLCD_Bitmap(xoffset,yoffset,xmax+1-xmin,ymax-1-ymin,(unsigned char *)buffer);
-			}
-			
-			timerCount++;
-			if (timerCount >= 40) {	  
-				// every so often, we reset timer count and start again
-				// This isn't for any important reason, it is just to for this example code to do "stuff"
-				timerCount = 0;
+			x++;
+			//y--;
+			if (x == WIDTH || y == 0) {
+				// Clear the current graph
+				GLCD_ClearWindow(0,0,WIDTH,211,screenColor);	  
+				x = 0;
+				y = 210;
 			}
 			break;
 		}
