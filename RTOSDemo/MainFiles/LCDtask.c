@@ -1,3 +1,5 @@
+#define DEBUG 1
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -11,6 +13,10 @@
 #include "vtUtilities.h"
 #include "LCDtask.h"
 #include "string.h"
+
+#if DEBUG == 1
+#include "lpc17xx_gpio.h"
+#endif
 
 // I have set this to a larger stack size because of (a) using printf() and (b) the depth of function calls
 //   for some of the LCD operations
@@ -143,8 +149,6 @@ void copyMsgString(char *target,vtLCDMsg *lcdBuffer,int targetMaxLen)
 #include "ARM_Ani_16bpp.c"
 #endif
 
-static unsigned short hsl2rgb(float H,float S,float L);
-
 #if LCD_EXAMPLE_OP==1
 // Buffer in which to store the memory read from the LCD
 	#define BUF_LEN (((15*2)+1)*((15*2)+1))
@@ -157,6 +161,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	#if LCD_EXAMPLE_OP==0
 	unsigned short screenColor = 0;
 	unsigned short tscr;
+	unsigned char curLine;
 	unsigned int x = 0, y = Y_GRAPH_SPACE;
 	#elif LCD_EXAMPLE_OP==1
 	unsigned char picIndex = 0;
@@ -202,6 +207,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	srand((unsigned) 55); // initialize the random number generator to the same seed for repeatability
 	#endif
 
+	curLine = 3;
 	// This task should never exit
 	for(;;)
 	{	
@@ -228,14 +234,20 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 		// Take a different action depending on the type of the message that we received
 		switch(getMsgType(&msgBuffer)) {
 		case LCDMsgTypePrint: {
+			#if DEBUG == 1
+			GPIO_SetValue(0, 0x8000);
+			#endif
 			// This will result in the text printing in the last five lines of the screen
 			char   lineBuffer[lcdCHAR_IN_LINE+1];
 			copyMsgString(lineBuffer,&msgBuffer,lcdCHAR_IN_LINE);
 			// clear the line
-			GLCD_ClearLn(9,1);
+			GLCD_ClearLn(curLine,1);
 			// show the text
-			GLCD_DisplayString(9,0,1,(unsigned char *)lineBuffer);
-
+			GLCD_DisplayString(curLine,0,1,(unsigned char *)lineBuffer);
+			curLine++;
+			if (curLine == lcdNUM_LINES) {
+				curLine = 3;
+			}
 			break;
 		}
 		case LCDMsgTypeTimer: {	
@@ -253,6 +265,9 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 				GLCD_ClearWindow(0,0,WIDTH,Y_GRAPH_SPACE,screenColor);	  
 				x = 0;
 			}
+			#if DEBUG == 1
+			GPIO_ClearValue(0, 0x8000);
+			#endif
 			break;
 		}
 		default: {
@@ -291,63 +306,4 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 		Bad setting
 		#endif	
 	}
-}
-
-// Convert from HSL colormap to RGB values in this weird colormap
-// H: 0 to 360
-// S: 0 to 1
-// L: 0 to 1
-// The LCD has a funky bitmap.  Each pixel is 16 bits (a "short unsigned int")
-//   Red is the most significant 5 bits
-//   Blue is the least significant 5 bits
-//   Green is the middle 6 bits
-static unsigned short hsl2rgb(float H,float S,float L)
-{
-	float C = (1.0 - fabs(2.0*L-1.0))*S;
-	float Hprime = H / 60;
-	unsigned short t = Hprime / 2.0;
-	t *= 2;
-	float X = C * (1-abs((Hprime - t) - 1));
-	unsigned short truncHprime = Hprime;
-	float R1, G1, B1;
-
-	switch(truncHprime) {
-		case 0: {
-			R1 = C; G1 = X; B1 = 0;
-			break;
-		}
-		case 1: {
-			R1 = X; G1 = C; B1 = 0;
-			break;
-		}
-		case 2: {
-			R1 = 0; G1 = C; B1 = X;
-			break;
-		}
-		case 3: {
-			R1 = 0; G1 = X; B1 = C;
-			break;
-		}
-		case 4: {
-			R1 = X; G1 = 0; B1 = C;
-			break;
-		}
-		case 5: {
-			R1 = C; G1 = 0; B1 = X;
-			break;
-		}
-		default: {
-			// make the compiler stop generating warnings
-			R1 = 0; G1 = 0; B1 = 0;
-			VT_HANDLE_FATAL_ERROR(Hprime);
-			break;
-		}
-	}
-	float m = L - 0.5*C;
-	R1 += m; G1 += m; B1 += m;
-	unsigned short red = R1*32; if (red > 31) red = 31;
-	unsigned short green = G1*64; if (green > 63) green = 63;
-	unsigned short blue = B1*32; if (blue > 31) blue = 31;
-	unsigned short color = (red << 11) | (green << 5) | blue;
-	return(color); 
 }

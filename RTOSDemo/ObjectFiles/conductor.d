@@ -40,5 +40,5 @@ ObjectFiles/conductor.o: MainFiles/conductor.c \
  ../NXPDrivers/include/lpc17xx_i2c.h ../NXPDrivers/include/lpc_types.h \
  ../FreeRTOS/Source/include/projDefs.h MainFiles/i2cInfrared.h \
  MainFiles/lcdTask.h ../FreeRTOS/Source/include/queue.h \
- ../FreeRTOS/Source/include/timers.h MainFiles/I2CTaskMsgTypes.h \
- MainFiles/conductor.h
+ ../FreeRTOS/Source/include/timers.h MainFiles/motor.h \
+ MainFiles/I2CTaskMsgTypes.h MainFiles/conductor.h

@@ -75,6 +75,8 @@
  * as Hyperterminal can be used to talk to the USB task.
  */
 
+#define DEBUG 1
+
 /* Scheduler includes. */
 #include "FreeRTOS.h"
 #include "task.h"
@@ -86,9 +88,6 @@
 You should read the note above.
 #endif
 
-/* Define whether or not to start the standard FreeRTOS demo tasks (the code is still included in the project
-   unless the files are actually removed from the project */
-#define USE_FREERTOS_DEMO 0
 // Define whether or not to use my LCD task
 #define USE_MTJ_LCD 1
 // Define whether to use my temperature sensor read task (the sensor is on the PIC v4 demo board, so if that isn't connected
@@ -96,22 +95,10 @@ You should read the note above.
 #define USE_MTJ_V4Temp_Sensor 0
 // Define whether to use my infrared sensor task
 #define USE_INFRARED_SENSOR 1
+// Define whether to use my motor task
+#define USE_MOTOR_TASK 1
 // Define whether to use my USB task
 #define USE_MTJ_USE_USB 0
-
-#if USE_FREERTOS_DEMO == 1
-/* Demo app includes. */
-#include "BlockQ.h"
-#include "integer.h"
-#include "blocktim.h"
-#include "flash.h"
-#include "semtest.h"
-#include "PollQ.h"
-#include "GenQTest.h"
-#include "QPeek.h"
-#include "recmutex.h"
-#include "timers.h"
-#endif
 
 #include "partest.h"
 
@@ -120,6 +107,7 @@ You should read the note above.
 #include "lcdTask.h"
 #include "i2cTemp.h"
 #include "i2cInfrared.h"
+#include "motor.h"
 #include "vtI2C.h"
 #include "myTimers.h"
 #include "conductor.h"
@@ -192,17 +180,20 @@ static char *pcStatusMessage = mainPASS_STATUS_MESSAGE;
 static vtI2CStruct vtI2C0;
 // data structure required for one temperature sensor task
 static vtTempStruct tempSensorData;
-// data structure required for conductor task
-static vtConductorStruct conductorData;
 #endif
 
 #if USE_INFRARED_SENSOR == 1
 // data structure required for one I2C task
 static vtI2CStruct vtI2C0;
-// data structure required for one temperature sensor task
+// data structure required for one infrared sensor task
 static vtInfraredStruct infraredSensorData;
-// data structure required for conductor task
-static vtConductorStruct conductorData;
+#endif
+
+#if USE_MOTOR_TASK == 0
+// data structure required for one I2C task
+static vtI2CStruct vtI2C0;
+// data structure required for one motor task
+static vtMotorStruct motorData;
 #endif
 
 #if USE_MTJ_LCD == 1
@@ -210,10 +201,17 @@ static vtConductorStruct conductorData;
 static vtLCDStruct vtLCDdata; 
 #endif
 
+// data structure required for conductor task
+static vtConductorStruct conductorData;
+
 /*-----------------------------------------------------------*/
 
 int main( void )
 {
+	#if DEBUG == 1
+	GPIO_SetDir(0,0x78000,1);
+	#endif
+
 	/* MTJ: initialize syscalls -- *must* be first */
 	// syscalls.c contains the files upon which the standard (and portable) C libraries rely 
 	init_syscalls();
@@ -223,20 +221,6 @@ int main( void )
 
 	/* Configure the hardware for use by this demo. */
 	prvSetupHardware();
-
-	#if USE_FREERTOS_DEMO == 1
-	/* Start the standard demo tasks.  These are just here to exercise the
-	kernel port and provide examples of how the FreeRTOS API can be used. */
-	vStartBlockingQueueTasks( mainBLOCK_Q_PRIORITY );
-    vCreateBlockTimeTasks();
-    vStartSemaphoreTasks( mainSEM_TEST_PRIORITY );
-    vStartPolledQueueTasks( mainQUEUE_POLL_PRIORITY );
-    vStartIntegerMathTasks( mainINTEGER_TASK_PRIORITY );
-    vStartGenericQueueTasks( mainGEN_QUEUE_TASK_PRIORITY );
-    vStartQueuePeekTasks();
-    vStartRecursiveMutexTasks();
-	vStartLEDFlashTasks( mainFLASH_TASK_PRIORITY );
-	#endif
 
 	#if USE_WEB_SERVER == 1
 	// Not a standard demo -- but also not one of mine (MTJ)
@@ -269,9 +253,32 @@ int main( void )
 	#endif
 	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
 	startTimerForInfrared(&infraredSensorData);
-	// start up a "conductor" task that will move messages around
-	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData);
 	#endif
+
+//	#if USE_MOTOR_TASK == 1
+//	// My Motor task
+//	// First, start up an I2C task and associate it with the I2C0 hardware on the ARM (there are 3 I2C devices, we need this one)
+//	// See vtI2C.h & vtI2C.c for more details on this task and the API to access the task
+//	// Initialize I2C0 for I2C0 at an I2C clock speed of 100KHz
+//	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000) != vtI2CInitSuccess) {
+//		VT_HANDLE_FATAL_ERROR(0);
+//	}
+//	// Now, start up the task that is going to handle the infrared sensor sampling (it will talk to the I2C task and LCD task using their APIs)
+//	#if USE_MTJ_LCD == 1
+//	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
+//	#else
+//	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
+//	#endif
+//	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
+//	startTimerForInfrared(&infraredSensorData);
+//	#endif
+
+//	#if USE_MOTOR_TASK == 1 && USE_INFRARED_SENSOR == 1
+//	// start up a "conductor" task that will move messages around
+//	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData,&motorData);
+//	#else
+	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData,NULL);
+//	#endif
 
     /* Create the USB task. MTJ: This routine has been modified from the original example (which is not a FreeRTOS standard demo) */
 	#if USE_MTJ_USE_USB == 1
@@ -305,42 +312,6 @@ static unsigned long ulTicksSinceLastDisplay = 0;
 		/* Reset the counter so these checks run again in mainCHECK_DELAY
 		ticks time. */
 		ulTicksSinceLastDisplay = 0;
-
-#if USE_FREERTOS_DEMO == 1
-		/* Has an error been found in any task? */
-		if( xAreGenericQueueTasksStillRunning() != pdTRUE )
-		{
-			pcStatusMessage = "An error has been detected in the Generic Queue test/demo.";
-		}
-		else if( xAreQueuePeekTasksStillRunning() != pdTRUE )
-		{
-			pcStatusMessage = "An error has been detected in the Peek Queue test/demo.";
-		}
-		else if( xAreBlockingQueuesStillRunning() != pdTRUE )
-		{
-			pcStatusMessage = "An error has been detected in the Block Queue test/demo.";
-		}
-		else if( xAreBlockTimeTestTasksStillRunning() != pdTRUE )
-		{
-			pcStatusMessage = "An error has been detected in the Block Time test/demo.";
-		}
-	    else if( xAreSemaphoreTasksStillRunning() != pdTRUE )
-	    {
-	        pcStatusMessage = "An error has been detected in the Semaphore test/demo.";
-	    }
-	    else if( xArePollingQueuesStillRunning() != pdTRUE )
-	    {
-	        pcStatusMessage = "An error has been detected in the Poll Queue test/demo.";
-	    }
-	    else if( xAreIntegerMathsTaskStillRunning() != pdTRUE )
-	    {
-	        pcStatusMessage = "An error has been detected in the Int Math test/demo.";
-	    }
-	    else if( xAreRecursiveMutexTasksStillRunning() != pdTRUE )
-	    {
-	    	pcStatusMessage = "An error has been detected in the Mutex test/demo.";
-	    }
-#endif
 	}
 }
 /*-----------------------------------------------------------*/

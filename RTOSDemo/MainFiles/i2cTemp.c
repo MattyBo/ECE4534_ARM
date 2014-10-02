@@ -176,7 +176,6 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 			break;
 		}
 		case TempMsgTypeTimer: {
-			GPIO_SetValue(0, 0x8000);
 			// Timer messages never change the state, they just cause an action (or not) 
 			if ((currentState != fsmStateInit1Sent) && (currentState != fsmStateInit2Sent)) {
 				// Read in the values from the temperature sensor
@@ -197,7 +196,6 @@ static portTASK_FUNCTION( vi2cTempUpdateTask, pvParameters )
 			} else {
 				// just ignore timer messages until initialization is complete
 			} 
-			GPIO_ClearValue(0, 0x8000);
 			break;
 		}
 		case vtI2CMsgTypeTempRead1: {

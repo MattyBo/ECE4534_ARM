@@ -16,6 +16,9 @@
 #include "i2cInfrared.h"
 #include "I2CTaskMsgTypes.h"
 
+#include "lpc17xx_gpio.h"
+#define DEBUG 1
+
 /* *********************************************** */
 // definitions and data structures that are private to this file
 // Length of the queue to this task
@@ -75,21 +78,25 @@ portBASE_TYPE SendInfraredTimerMsg(vtInfraredStruct *sensorData,portTickType tic
 	return(xQueueSend(sensorData->inQ,(void *) (&sensorBuffer),ticksToBlock));
 }
 
-portBASE_TYPE SendInfraredValueMsg(vtInfraredStruct *SensorData,uint8_t msgType,uint8_t value,portTickType ticksToBlock)
+portBASE_TYPE SendInfraredValueMsg(vtInfraredStruct *sensorData,uint8_t msgType,uint8_t* values,portTickType ticksToBlock)
 {
-	vtInfraredMsg SensorBuffer;
+	vtInfraredMsg sensorBuffer;
 
-	if (SensorData == NULL) {
+	if (sensorData == NULL) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
-	SensorBuffer.length = sizeof(value);
-	if (SensorBuffer.length > vtInfraredMaxLen) {
+	sensorBuffer.length = vtInfraredMaxLen;
+	if (sensorBuffer.length > vtInfraredMaxLen) {
 		// no room for this message
-		VT_HANDLE_FATAL_ERROR(SensorBuffer.length);
+		VT_HANDLE_FATAL_ERROR(sensorBuffer.length);
 	}
-	memcpy(SensorBuffer.buf,(char *)&value,sizeof(value));
-	SensorBuffer.msgType = msgType;
-	return(xQueueSend(SensorData->inQ,(void *) (&SensorBuffer),ticksToBlock));
+	memcpy(sensorBuffer.buf,values,vtInfraredMaxLen);
+//	int i;
+//	for (i = 0; i < vtInfraredMaxLen; i++) {
+//		sensorBuffer.buf[i] = values[i];
+//	}
+	sensorBuffer.msgType = msgType;
+	return(xQueueSend(sensorData->inQ,(void *) (&sensorBuffer),ticksToBlock));
 }
 
 // End of Public API
@@ -98,29 +105,15 @@ int getMsgType(vtInfraredMsg *Buffer)
 {
 	return(Buffer->msgType);
 }
-uint8_t getValue(vtInfraredMsg *Buffer)
-{
-	uint8_t *ptr = (uint8_t *) Buffer->buf;
-	return(*ptr);
-}
 
 // I2C commands for the infrared sensor
-	const uint8_t i2cCmdInit[]= {0xAC,0x00};
-	const uint8_t i2cCmdStartConvert[]= {0xEE};
-	const uint8_t i2cCmdStopConvert[]= {0x22};
-	const uint8_t i2cCmdReadVals[]= {0xBB};
+const uint8_t i2cCmdReadVals[]= {0xFF, 0xBB, 0x00};
 
 // end of I2C command definitions
-
-// Definitions of the states for the FSM below
-const uint8_t fsmStateInit1Sent = 0;
-const uint8_t fsmStateInit2Sent = 1;
-const uint8_t fsmStateSensorRead = 2;
 
 // This is the actual task that is run
 static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 {
-	float distance = 0.0;
 	// Get the parameters
 	vtInfraredStruct *param = (vtInfraredStruct *) pvParameters;
 	// Get the I2C device pointer
@@ -131,19 +124,9 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 	char lcdBuffer[vtLCDMaxLen+1];
 	// Buffer for receiving messages
 	vtInfraredMsg msgBuffer;
-	uint8_t currentState;
 
 	// Assumes that the I2C device (and thread) have already been initialized
 
-	// This task is implemented as a Finite State Machine.  The incoming messages are examined to see
-	//   whether or not the state should change.
-	//
-	// Infrared sensor configuration sequence (DS1621) Address 0x4F
-//	if (vtI2CEnQ(devPtr,vtI2CMsgTypeSensorInit,0x4F,sizeof(i2cCmdInit),i2cCmdInit,0) != pdTRUE) {
-//		VT_HANDLE_FATAL_ERROR(0);
-//	}
-//	currentState = fsmStateInit1Sent;
-	currentState = fsmStateSensorRead;
 	// Like all good tasks, this should never exit
 	for(;;)
 	{
@@ -154,70 +137,64 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getMsgType(&msgBuffer)) {
-//		case vtI2CMsgTypeSensorInit: {
-//			if (currentState == fsmStateInit1Sent) {
-//				currentState = fsmStateInit2Sent;
-//				// Must wait 10ms after writing to the infrared sensor's configuration registers(per sensor data sheet)
-//				vTaskDelay(10/portTICK_RATE_MS);
-//				// Tell it to start converting
-//				if (vtI2CEnQ(devPtr,vtI2CMsgTypeSensorInit,0x4F,sizeof(i2cCmdStartConvert),i2cCmdStartConvert,0) != pdTRUE) {
-//					VT_HANDLE_FATAL_ERROR(0);
-//				}
-//			} else 	if (currentState == fsmStateInit2Sent) {
-//				currentState = fsmStateSensorRead;
-//			} else {
-//				// unexpectedly received this message
-//				VT_HANDLE_FATAL_ERROR(0);
-//			}
-//			break;
-//		}
-		case SensorMsgTypeTimer: {
-			// Timer messages never change the state, they just cause an action (or not) 
-			if ((currentState != fsmStateInit1Sent) && (currentState != fsmStateInit2Sent)) {
+			case SensorMsgTypeTimer: {
+				#if DEBUG == 1
+				GPIO_SetValue(0,0x20000);
+				#endif
+				// Timer messages never change the state, they just cause an action (or not) 
 				// Read in the value from the infrared sensor
-				if (vtI2CEnQ(devPtr,vtI2CMsgTypeSensorRead,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,1) != pdTRUE) {
-					VT_HANDLE_FATAL_ERROR(0);
+				if (vtI2CEnQ(devPtr,vtI2CMsgTypeSensorRead,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,7) != pdTRUE) {
+					// If we can't get a complete message from the rover in time, give up and try again
+					break;
 				}
-			} else {
-				// just ignore timer messages until initialization is complete
-			} 
-			break;
-		}
-		case vtI2CMsgTypeSensorRead: {
-			if (currentState == fsmStateSensorRead) {
-				distance = getValue(&msgBuffer);
+				#if DEBUG == 1
+				GPIO_ClearValue(0,0x20000);
+				#endif
+				break;
+			}
+			case vtI2CMsgTypeSensorRead: {
+				// Ensure msg was intended for this task. If not, break out and wait for next sensor msg
+				if (msgBuffer.buf[0] != 0xFF) break;
+				// Check msg integrity. 
+				uint8_t i;
+				uint8_t badMsg = 0;
+				for (i = 1; i < vtInfraredMaxLen; i++) {
+					if (msgBuffer.buf[i] == 0xFF || msgBuffer.buf[i] == 0xFE)  badMsg = 1;
+				}
+				// If we've gotten a bad msg, break and wait for next sensor msg
+				if (badMsg) break;
 				
 				#if PRINTF_VERSION == 1
-				printf("Distance %f cm\n",distance);
-				sprintf(lcdBuffer,"d= %f cm",distance);
+				printf("Distance1 %d cm\n",distance1);
+				sprintf(lcdBuffer,"d= %f cm",distance1);
 				#else
 				// we do not have full printf (so no %f) and therefore need to print out integers
-				printf("Distance %d cm\n",lrint(distance));
-				sprintf(lcdBuffer,"d=%d cm",lrint(distance));
+				printf("Distance1 %d cm\n",msgBuffer.buf[1]);
+				printf("Distance2 %d cm\n",msgBuffer.buf[2]);
+				printf("Distance3 %d cm\n",msgBuffer.buf[3]);
+				printf("Distance4 %d cm\n",msgBuffer.buf[4]);
+				printf("Distance5 %d cm\n",msgBuffer.buf[5]);
+				printf("Distance6 %d cm\n",msgBuffer.buf[6]);
 				#endif
 				if (lcdData != NULL) {
-					if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
-						VT_HANDLE_FATAL_ERROR(0);
-					}
-					if (distance != 0) {
-						if (SendLCDGraphMsg(lcdData,distance,portMAX_DELAY) != pdTRUE) {
+					for (i = 0; i < vtInfraredMaxLen; i++) {
+						sprintf(lcdBuffer,"d%d=%d cm",i,msgBuffer.buf[i]);
+						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
 							VT_HANDLE_FATAL_ERROR(0);
 						}
+//						if (distance1 != 0) {
+//							if (SendLCDGraphMsg(lcdData,distance1,portMAX_DELAY) != pdTRUE) {
+//								VT_HANDLE_FATAL_ERROR(0);
+//							}
+//						}
 					}
 				}
-			} else {
-				// unexpectedly received this message
-				VT_HANDLE_FATAL_ERROR(0);
+				break;
 			}
-			break;
+			default: {
+				VT_HANDLE_FATAL_ERROR(getMsgType(&msgBuffer));
+				break;
+			}
 		}
-
-		default: {
-			VT_HANDLE_FATAL_ERROR(getMsgType(&msgBuffer));
-			break;
-		}
-		}
-
-
 	}
 }

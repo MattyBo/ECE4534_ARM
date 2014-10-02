@@ -159,21 +159,21 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>-UM0102MBE -O974 -S8 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO3 -TC100000000 -TP21 -TDS804F -TDT0 -TDC10 -TIE1 -TIP0 -FO23 -FD10000000 -FC800 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000</Name>
+          <Name>-UM0307BME -O974 -S8 -C0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO3 -TC100000000 -TP21 -TDS804F -TDT0 -TDC10 -TIE1 -TIP0 -FO23 -FD10000000 -FC800 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint>
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>175</LineNumber>
+          <LineNumber>190</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>12138</Address>
           <ByteObject>0</ByteObject>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\i2cInfrared.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
@@ -181,17 +181,32 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>187</LineNumber>
+          <LineNumber>108</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>11922</Address>
+          <Address>12394</Address>
           <ByteObject>0</ByteObject>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename></Filename>
+          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\i2cInfrared.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\RTOSDemo\MainFiles/i2cInfrared.c\187</Expression>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>84</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>11592</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\conductor.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
@@ -278,10 +293,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>67</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>241</TopLine>
+      <CurrentLine>262</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Source/queue.c</PathWithFileName>
       <FilenameWithoutPath>queue.c</FilenameWithoutPath>
@@ -341,10 +356,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>22</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>249</TopLine>
-      <CurrentLine>249</CurrentLine>
+      <TopLine>197</TopLine>
+      <CurrentLine>210</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -355,10 +370,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>46</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>157</TopLine>
-      <CurrentLine>157</CurrentLine>
+      <TopLine>94</TopLine>
+      <CurrentLine>104</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/i2cTemp.c</PathWithFileName>
       <FilenameWithoutPath>i2cTemp.c</FilenameWithoutPath>
@@ -397,10 +412,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>72</ColumnNumber>
+      <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>205</TopLine>
-      <CurrentLine>205</CurrentLine>
+      <TopLine>221</TopLine>
+      <CurrentLine>246</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/LCDtask.c</PathWithFileName>
       <FilenameWithoutPath>LCDtask.c</FilenameWithoutPath>
@@ -411,10 +426,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>31</ColumnNumber>
+      <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>14</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -427,11 +442,25 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>32</TopLine>
-      <CurrentLine>32</CurrentLine>
+      <TopLine>74</TopLine>
+      <CurrentLine>84</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>13</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>39</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>181</TopLine>
+      <CurrentLine>194</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\MainFiles/i2cInfrared.c</PathWithFileName>
+      <FilenameWithoutPath>i2cInfrared.c</FilenameWithoutPath>
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
@@ -439,13 +468,13 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>60</ColumnNumber>
+      <ColumnNumber>28</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>71</TopLine>
-      <CurrentLine>71</CurrentLine>
+      <TopLine>174</TopLine>
+      <CurrentLine>191</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\MainFiles/i2cInfrared.c</PathWithFileName>
-      <FilenameWithoutPath>i2cInfrared.c</FilenameWithoutPath>
+      <PathWithFileName>.\MainFiles/motor.c</PathWithFileName>
+      <FilenameWithoutPath>motor.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -456,7 +485,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>13</FileNumber>
+      <FileNumber>14</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -470,11 +499,11 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>14</FileNumber>
+      <FileNumber>15</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>37</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -484,7 +513,7 @@
     </File>
     <File>
       <GroupNumber>3</GroupNumber>
-      <FileNumber>15</FileNumber>
+      <FileNumber>16</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -505,7 +534,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>16</FileNumber>
+      <FileNumber>17</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -519,7 +548,7 @@
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>17</FileNumber>
+      <FileNumber>18</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -533,7 +562,7 @@
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>18</FileNumber>
+      <FileNumber>19</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -547,7 +576,7 @@
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>19</FileNumber>
+      <FileNumber>20</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -561,7 +590,7 @@
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>20</FileNumber>
+      <FileNumber>21</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -582,7 +611,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>21</FileNumber>
+      <FileNumber>22</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -596,7 +625,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>22</FileNumber>
+      <FileNumber>23</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -610,7 +639,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>23</FileNumber>
+      <FileNumber>24</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -624,7 +653,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>24</FileNumber>
+      <FileNumber>25</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -638,7 +667,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>25</FileNumber>
+      <FileNumber>26</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -652,7 +681,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>26</FileNumber>
+      <FileNumber>27</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -666,7 +695,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>27</FileNumber>
+      <FileNumber>28</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -680,7 +709,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>28</FileNumber>
+      <FileNumber>29</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -694,7 +723,7 @@
     </File>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>29</FileNumber>
+      <FileNumber>30</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -715,7 +744,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>30</FileNumber>
+      <FileNumber>31</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -729,7 +758,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>31</FileNumber>
+      <FileNumber>32</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -743,7 +772,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>32</FileNumber>
+      <FileNumber>33</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -757,7 +786,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>33</FileNumber>
+      <FileNumber>34</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -771,7 +800,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>34</FileNumber>
+      <FileNumber>35</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -785,7 +814,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>35</FileNumber>
+      <FileNumber>36</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -799,7 +828,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>36</FileNumber>
+      <FileNumber>37</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -813,7 +842,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>37</FileNumber>
+      <FileNumber>38</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -827,7 +856,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>38</FileNumber>
+      <FileNumber>39</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -841,7 +870,7 @@
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
-      <FileNumber>39</FileNumber>
+      <FileNumber>40</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -862,7 +891,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>40</FileNumber>
+      <FileNumber>41</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -876,14 +905,14 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>41</FileNumber>
+      <FileNumber>42</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>19</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>861</TopLine>
-      <CurrentLine>870</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtLCD/GLCD_SPI_LPC1700.c</PathWithFileName>
       <FilenameWithoutPath>GLCD_SPI_LPC1700.c</FilenameWithoutPath>
@@ -897,7 +926,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>42</FileNumber>
+      <FileNumber>43</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -911,7 +940,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>43</FileNumber>
+      <FileNumber>44</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -925,7 +954,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>44</FileNumber>
+      <FileNumber>45</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -939,7 +968,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>45</FileNumber>
+      <FileNumber>46</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -953,7 +982,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>46</FileNumber>
+      <FileNumber>47</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -967,7 +996,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>47</FileNumber>
+      <FileNumber>48</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -988,14 +1017,14 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>48</FileNumber>
+      <FileNumber>49</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>73</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>146</TopLine>
-      <CurrentLine>158</CurrentLine>
+      <TopLine>18</TopLine>
+      <CurrentLine>18</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtI2C/vtI2C.c</PathWithFileName>
       <FilenameWithoutPath>vtI2C.c</FilenameWithoutPath>
@@ -1003,9 +1032,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</PathWithFilename>
-    <TopLine>26</TopLine>
-    <CurrentLine>43</CurrentLine>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\motor.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>16</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1029,9 +1058,139 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\I2CTaskMsgTypes.h</PathWithFilename>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>15</CurrentLine>
+    <CurrentLine>19</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\CONDUCTOR.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>13</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>14</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</PathWithFilename>
+    <TopLine>7</TopLine>
+    <CurrentLine>7</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTEMP.H</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>14</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>C:\USERS\ECE4534\DOCUMENTS\GITHUB\ECE4534_ARM\FREERTOS\SOURCE\INCLUDE\QUEUE.H</PathWithFilename>
+    <TopLine>619</TopLine>
+    <CurrentLine>624</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1056,8 +1215,8 @@
 
   <AlienFiles>
     <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\LCDTASK.H</PathWithFilename>
-    <TopLine>38</TopLine>
-    <CurrentLine>57</CurrentLine>
+    <TopLine>1</TopLine>
+    <CurrentLine>1</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1085,73 +1244,103 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>7</ActiveTab>
+      <ActiveTab>14</ActiveTab>
       <Documents>
         <Doc>
-          <Name>../vtCode/vtI2C/vtI2C.c</Name>
-          <ColumnNumber>73</ColumnNumber>
-          <TopLine>146</TopLine>
-          <CurrentLine>158</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/myTimers.c</Name>
-          <ColumnNumber>2</ColumnNumber>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTEMP.H</Name>
+          <ColumnNumber>46</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>6</CurrentLine>
+          <CurrentLine>14</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/i2cTemp.c</Name>
-          <ColumnNumber>46</ColumnNumber>
-          <TopLine>157</TopLine>
-          <CurrentLine>157</CurrentLine>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>94</TopLine>
+          <CurrentLine>104</CurrentLine>
         </Doc>
         <Doc>
-          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
-          <ColumnNumber>35</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>15</CurrentLine>
+          <Name>.\MainFiles/i2cInfrared.c</Name>
+          <ColumnNumber>39</ColumnNumber>
+          <TopLine>181</TopLine>
+          <CurrentLine>194</CurrentLine>
         </Doc>
         <Doc>
-          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</Name>
-          <ColumnNumber>77</ColumnNumber>
-          <TopLine>26</TopLine>
-          <CurrentLine>43</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/main.c</Name>
-          <ColumnNumber>22</ColumnNumber>
-          <TopLine>249</TopLine>
-          <CurrentLine>271</CurrentLine>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</Name>
+          <ColumnNumber>117</ColumnNumber>
+          <TopLine>7</TopLine>
+          <CurrentLine>7</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/conductor.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>32</TopLine>
-          <CurrentLine>32</CurrentLine>
+          <TopLine>74</TopLine>
+          <CurrentLine>84</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/main.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>197</TopLine>
+          <CurrentLine>210</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
+          <ColumnNumber>25</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>19</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\CONDUCTOR.H</Name>
+          <ColumnNumber>103</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>13</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\MOTOR.H</Name>
+          <ColumnNumber>56</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>16</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/motor.c</Name>
+          <ColumnNumber>28</ColumnNumber>
+          <TopLine>174</TopLine>
+          <CurrentLine>191</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>../vtCode/vtI2C/vtI2C.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>18</TopLine>
+          <CurrentLine>18</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</Name>
+          <ColumnNumber>24</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>14</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\FREERTOS\SOURCE\INCLUDE\QUEUE.H</Name>
+          <ColumnNumber>51</ColumnNumber>
+          <TopLine>619</TopLine>
+          <CurrentLine>624</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>../FreeRTOS/Source/queue.c</Name>
+          <ColumnNumber>67</ColumnNumber>
+          <TopLine>241</TopLine>
+          <CurrentLine>262</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/LCDtask.c</Name>
-          <ColumnNumber>33</ColumnNumber>
-          <TopLine>87</TopLine>
-          <CurrentLine>106</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/i2cInfrared.c</Name>
-          <ColumnNumber>60</ColumnNumber>
-          <TopLine>71</TopLine>
-          <CurrentLine>71</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../vtCode/vtLCD/GLCD_SPI_LPC1700.c</Name>
-          <ColumnNumber>19</ColumnNumber>
-          <TopLine>861</TopLine>
-          <CurrentLine>870</CurrentLine>
+          <ColumnNumber>21</ColumnNumber>
+          <TopLine>221</TopLine>
+          <CurrentLine>246</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\LCDTASK.H</Name>
-          <ColumnNumber>22</ColumnNumber>
-          <TopLine>38</TopLine>
-          <CurrentLine>57</CurrentLine>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

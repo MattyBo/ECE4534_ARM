@@ -10,7 +10,9 @@ typedef struct __InfraredStruct {
 	xQueueHandle inQ;
 } vtInfraredStruct;
 // Maximum length of a message that can be received by this task
-#define vtInfraredMaxLen   (sizeof(portTickType))
+//#define vtInfraredMaxLen   (sizeof(portTickType))
+#define vtInfraredMaxLen   7 // This is how long the message back from the rover is
+
 
 // Public API
 //
@@ -24,7 +26,7 @@ void vStarti2cInfraredTask(vtInfraredStruct *sensorData,unsigned portBASE_TYPE u
 //
 // Send a timer message to the Sensor task
 // Args:
-//   sensorData -- a pointer to a variable of type vtLCDStruct
+//   sensorData -- a pointer to a variable of type vtInfraredStruct
 //   ticksElapsed -- number of ticks since the last message (this will be sent in the message)
 //   ticksToBlock -- how long the routine should wait if the queue is full
 // Return:
@@ -33,11 +35,11 @@ portBASE_TYPE SendInfraredTimerMsg(vtInfraredStruct *sensorData,portTickType tic
 //
 // Send a value message to the Sensor task
 // Args:
-//   sensorData -- a pointer to a variable of type vtLCDStruct
+//   sensorData -- a pointer to a variable of type vtInfraredStruct
 //   msgType -- the type of the message to send
 //   value -- The value to send
 //   ticksToBlock -- how long the routine should wait if the queue is full
 // Return:
 //   Result of the call to xQueueSend()
-portBASE_TYPE SendInfraredValueMsg(vtInfraredStruct *tempData,uint8_t msgType,uint8_t value,portTickType ticksToBlock);
+portBASE_TYPE SendInfraredValueMsg(vtInfraredStruct *sensorData,uint8_t msgType,uint8_t* values,portTickType ticksToBlock);
 #endif

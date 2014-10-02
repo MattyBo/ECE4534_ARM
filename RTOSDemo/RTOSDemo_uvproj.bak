@@ -362,14 +362,9 @@
               <FilePath>.\MainFiles/conductor.c</FilePath>
             </File>
             <File>
-              <FileName>i2cSensor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MainFiles/i2cSensor.c</FilePath>
-            </File>
-            <File>
               <FileName>i2cInfrared.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MainFiles\i2cInfrared.c</FilePath>
+              <FilePath>.\MainFiles/i2cInfrared.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -9,9 +9,13 @@
 #include "LCDtask.h"
 #include "myTimers.h"
 
+#include "lpc17xx_gpio.h"
+#define DEBUG 1
+
 // Set the rate at which we query the infrared sensor
 // the units are # of reads / sec
 #define INFRARED_QUERY_RATE (16 / 8)
+#define MOTOR_COMMAND_RATE (8 / 8)
 
 /* **************************************************************** */
 // WARNING: Do not print in this file -- the stack is not large enough for this task
@@ -104,8 +108,7 @@ void startTimerForTemperature(vtTempStruct *vtTempdata) {
 /* *********************************************************** */
 // Functions for the Infrared Sensor Task related timer
 //
-// how often the timer that sends messages to the LCD task should run
-// Set the task up to run every 500 ms
+// how often to ask the sensors for data
 #define infraredWRITE_RATE_BASE	( ( portTickType ) (1000 / INFRARED_QUERY_RATE) / portTICK_RATE_MS)
 
 // Callback function that is called by the InfraredTimer
@@ -138,6 +141,53 @@ void startTimerForInfrared(vtInfraredStruct *vtInfraredData) {
 		VT_HANDLE_FATAL_ERROR(0);
 	} else {
 		if (xTimerStart(InfraredTimerHandle,0) != pdPASS) {
+			VT_HANDLE_FATAL_ERROR(0);
+		}
+	}
+}
+
+/* *********************************************************** */
+// Functions for the Motor Task related timer
+//
+// how often to send motor commands to the rover
+#define motorWRITE_RATE_BASE	( ( portTickType ) (1000 / MOTOR_COMMAND_RATE) / portTICK_RATE_MS)
+
+// Callback function that is called by the MotorTimer
+//   Sends a message to the queue that is read by the Motor Task
+void MotorTimerCallback(xTimerHandle pxTimer)
+{
+	if (pxTimer == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	} else {
+		#if DEBUG == 1
+		GPIO_SetValue(0,0x10000);
+		#endif
+		// When setting up this timer, I put the pointer to the 
+		//   Sensor structure as the "timer ID" so that I could access
+		//   that structure here -- which I need to do to get the 
+		//   address of the message queue to send to 
+		vtMotorStruct *ptr = (vtMotorStruct *) pvTimerGetTimerID(pxTimer);
+		// Make this non-blocking *but* be aware that if the queue is full, this routine
+		// will not care, so if you care, you need to check something
+		if (SendMotorTimerMsg(ptr,motorWRITE_RATE_BASE,0) == errQUEUE_FULL) {
+			// Here is where you would do something if you wanted to handle the queue being full
+			VT_HANDLE_FATAL_ERROR(0);
+		}
+		#if DEBUG == 1
+		GPIO_ClearValue(0,0x10000);
+		#endif
+	}
+}
+
+void startTimerForMotor(vtMotorStruct *vtMotorData) {
+	if (sizeof(long) != sizeof(vtInfraredStruct *)) {
+		VT_HANDLE_FATAL_ERROR(0);
+	}
+	xTimerHandle MotorTimerHandle = xTimerCreate((const signed char *)"Infrared Timer",motorWRITE_RATE_BASE,pdTRUE,(void *) vtMotorData,MotorTimerCallback);
+	if (MotorTimerHandle == NULL) {
+		VT_HANDLE_FATAL_ERROR(0);
+	} else {
+		if (xTimerStart(MotorTimerHandle,0) != pdPASS) {
 			VT_HANDLE_FATAL_ERROR(0);
 		}
 	}
