@@ -207,7 +207,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	srand((unsigned) 55); // initialize the random number generator to the same seed for repeatability
 	#endif
 
-	curLine = 3;
+	curLine = 8;
 	// This task should never exit
 	for(;;)
 	{	
@@ -237,7 +237,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			#if DEBUG == 1
 			GPIO_SetValue(0, 0x8000);
 			#endif
-			// This will result in the text printing in the last five lines of the screen
+			// 
 			char   lineBuffer[lcdCHAR_IN_LINE+1];
 			copyMsgString(lineBuffer,&msgBuffer,lcdCHAR_IN_LINE);
 			// clear the line
@@ -246,7 +246,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			GLCD_DisplayString(curLine,0,1,(unsigned char *)lineBuffer);
 			curLine++;
 			if (curLine == lcdNUM_LINES) {
-				curLine = 3;
+				curLine = 8;
 			}
 			break;
 		}

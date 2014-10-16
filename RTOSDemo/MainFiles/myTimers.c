@@ -14,7 +14,7 @@
 
 // Set the rate at which we query the infrared sensor
 // the units are # of reads / sec
-#define INFRARED_QUERY_RATE (16 / 8)
+#define INFRARED_QUERY_RATE (8 / 8)
 #define MOTOR_COMMAND_RATE (8 / 8)
 
 /* **************************************************************** */

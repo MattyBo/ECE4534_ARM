@@ -166,45 +166,15 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>190</LineNumber>
+          <LineNumber>160</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>12138</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\i2cInfrared.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>108</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>12394</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\i2cInfrared.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>84</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>11592</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\conductor.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\main.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -293,10 +263,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>67</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>241</TopLine>
-      <CurrentLine>262</CurrentLine>
+      <CurrentLine>258</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../FreeRTOS/Source/queue.c</PathWithFileName>
       <FilenameWithoutPath>queue.c</FilenameWithoutPath>
@@ -356,10 +326,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>39</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>197</TopLine>
-      <CurrentLine>210</CurrentLine>
+      <TopLine>13</TopLine>
+      <CurrentLine>45</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -370,10 +340,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>8</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>94</TopLine>
-      <CurrentLine>104</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/i2cTemp.c</PathWithFileName>
       <FilenameWithoutPath>i2cTemp.c</FilenameWithoutPath>
@@ -412,10 +382,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>215</TopLine>
-      <CurrentLine>237</CurrentLine>
+      <TopLine>88</TopLine>
+      <CurrentLine>88</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/LCDtask.c</PathWithFileName>
       <FilenameWithoutPath>LCDtask.c</FilenameWithoutPath>
@@ -426,10 +396,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>30</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>17</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/myTimers.c</PathWithFileName>
       <FilenameWithoutPath>myTimers.c</FilenameWithoutPath>
@@ -442,8 +412,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>74</TopLine>
-      <CurrentLine>84</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>4</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/conductor.c</PathWithFileName>
       <FilenameWithoutPath>conductor.c</FilenameWithoutPath>
@@ -454,10 +424,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>39</ColumnNumber>
+      <ColumnNumber>48</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>181</TopLine>
-      <CurrentLine>194</CurrentLine>
+      <TopLine>49</TopLine>
+      <CurrentLine>59</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/i2cInfrared.c</PathWithFileName>
       <FilenameWithoutPath>i2cInfrared.c</FilenameWithoutPath>
@@ -468,13 +438,27 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>28</ColumnNumber>
+      <ColumnNumber>111</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>174</TopLine>
-      <CurrentLine>191</CurrentLine>
+      <TopLine>31</TopLine>
+      <CurrentLine>50</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\MainFiles/motor.c</PathWithFileName>
       <FilenameWithoutPath>motor.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>48</TopLine>
+      <CurrentLine>59</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\MainFiles/navigation.c</PathWithFileName>
+      <FilenameWithoutPath>navigation.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -909,7 +893,7 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>71</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -1021,10 +1005,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>18</TopLine>
-      <CurrentLine>18</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../vtCode/vtI2C/vtI2C.c</PathWithFileName>
       <FilenameWithoutPath>vtI2C.c</FilenameWithoutPath>
@@ -1033,8 +1017,8 @@
 
   <AlienFiles>
     <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\motor.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>16</CurrentLine>
+    <TopLine>6</TopLine>
+    <CurrentLine>29</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1060,7 +1044,7 @@
   <AlienFiles>
     <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>19</CurrentLine>
+    <CurrentLine>17</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1112,59 +1096,7 @@
   <AlienFiles>
     <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>14</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</PathWithFilename>
-    <TopLine>7</TopLine>
-    <CurrentLine>7</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
-
-  <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTEMP.H</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>14</CurrentLine>
+    <CurrentLine>8</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1214,9 +1146,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\LCDTASK.H</PathWithFilename>
+    <PathWithFilename>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MainFiles\navigation.h</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
+    <CurrentLine>8</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1244,49 +1176,55 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>14</ActiveTab>
+      <ActiveTab>4</ActiveTab>
       <Documents>
         <Doc>
-          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTEMP.H</Name>
-          <ColumnNumber>46</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>14</CurrentLine>
+          <Name>.\MainFiles/navigation.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>48</TopLine>
+          <CurrentLine>59</CurrentLine>
         </Doc>
         <Doc>
-          <Name>.\MainFiles/i2cTemp.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>94</TopLine>
-          <CurrentLine>104</CurrentLine>
+          <Name>C:\USERS\ECE4534\DOCUMENTS\GITHUB\ECE4534_ARM\RTOSDEMO\MAINFILES\NAVIGATION.H</Name>
+          <ColumnNumber>26</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>8</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/LCDtask.c</Name>
+          <ColumnNumber>35</ColumnNumber>
+          <TopLine>88</TopLine>
+          <CurrentLine>88</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\MainFiles/myTimers.c</Name>
+          <ColumnNumber>31</ColumnNumber>
+          <TopLine>4</TopLine>
+          <CurrentLine>17</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/i2cInfrared.c</Name>
-          <ColumnNumber>39</ColumnNumber>
-          <TopLine>181</TopLine>
-          <CurrentLine>194</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\VTCODE\VTI2C\VTI2C.H</Name>
-          <ColumnNumber>117</ColumnNumber>
-          <TopLine>7</TopLine>
-          <CurrentLine>7</CurrentLine>
+          <ColumnNumber>48</ColumnNumber>
+          <TopLine>49</TopLine>
+          <CurrentLine>59</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/conductor.c</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>74</TopLine>
-          <CurrentLine>84</CurrentLine>
+          <TopLine>4</TopLine>
+          <CurrentLine>4</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/main.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>197</TopLine>
-          <CurrentLine>210</CurrentLine>
+          <ColumnNumber>39</ColumnNumber>
+          <TopLine>13</TopLine>
+          <CurrentLine>45</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CTASKMSGTYPES.H</Name>
-          <ColumnNumber>25</ColumnNumber>
+          <ColumnNumber>26</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>19</CurrentLine>
+          <CurrentLine>17</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\CONDUCTOR.H</Name>
@@ -1296,27 +1234,21 @@
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\MOTOR.H</Name>
-          <ColumnNumber>56</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>16</CurrentLine>
+          <ColumnNumber>69</ColumnNumber>
+          <TopLine>6</TopLine>
+          <CurrentLine>29</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\MainFiles/motor.c</Name>
-          <ColumnNumber>28</ColumnNumber>
-          <TopLine>174</TopLine>
-          <CurrentLine>191</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>../vtCode/vtI2C/vtI2C.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>18</TopLine>
-          <CurrentLine>18</CurrentLine>
+          <ColumnNumber>111</ColumnNumber>
+          <TopLine>31</TopLine>
+          <CurrentLine>50</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\I2CINFRARED.H</Name>
-          <ColumnNumber>24</ColumnNumber>
+          <ColumnNumber>31</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>14</CurrentLine>
+          <CurrentLine>8</CurrentLine>
         </Doc>
         <Doc>
           <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\FREERTOS\SOURCE\INCLUDE\QUEUE.H</Name>
@@ -1326,21 +1258,9 @@
         </Doc>
         <Doc>
           <Name>../FreeRTOS/Source/queue.c</Name>
-          <ColumnNumber>67</ColumnNumber>
+          <ColumnNumber>32</ColumnNumber>
           <TopLine>241</TopLine>
-          <CurrentLine>262</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\MainFiles/LCDtask.c</Name>
-          <ColumnNumber>21</ColumnNumber>
-          <TopLine>221</TopLine>
-          <CurrentLine>246</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>C:\Users\ECE4534\Documents\GitHub\ECE4534_ARM\RTOSDemo\MAINFILES\LCDTASK.H</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>1</CurrentLine>
+          <CurrentLine>258</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

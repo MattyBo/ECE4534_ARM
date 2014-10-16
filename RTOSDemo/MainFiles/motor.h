@@ -10,7 +10,8 @@ typedef struct __MotorStruct {
 	xQueueHandle inQ;
 } vtMotorStruct;
 // Maximum length of a message that can be received by this task
-#define vtMotorMaxLen   3
+#define vtMotorMaxLen   7
+#define vtMotorExpectedLen 3
 
 // Possible travel directions
 #define FORWARD 0
@@ -45,5 +46,5 @@ portBASE_TYPE SendMotorTimerMsg(vtMotorStruct *motorData,portTickType ticksElaps
 //   ticksToBlock -- how long the routine should wait if the queue is full
 // Return:
 //   Result of the call to xQueueSend()
-portBASE_TYPE SendMotorValueMsg(vtMotorStruct *tempData,uint8_t msgType,uint8_t* values,portTickType ticksToBlock);
+portBASE_TYPE SendMotorValueMsg(vtMotorStruct *motorData,uint8_t msgType,uint8_t* values,portTickType ticksToBlock);
 #endif

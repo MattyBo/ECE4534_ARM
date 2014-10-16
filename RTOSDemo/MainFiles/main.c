@@ -1,81 +1,5 @@
-/*
-    FreeRTOS V6.1.1 - Copyright (C) 2011 Real Time Engineers Ltd.
-
-    ***************************************************************************
-    *                                                                         *
-    * If you are:                                                             *
-    *                                                                         *
-    *    + New to FreeRTOS,                                                   *
-    *    + Wanting to learn FreeRTOS or multitasking in general quickly       *
-    *    + Looking for basic training,                                        *
-    *    + Wanting to improve your FreeRTOS skills and productivity           *
-    *                                                                         *
-    * then take a look at the FreeRTOS books - available as PDF or paperback  *
-    *                                                                         *
-    *        "Using the FreeRTOS Real Time Kernel - a Practical Guide"        *
-    *                  http://www.FreeRTOS.org/Documentation                  *
-    *                                                                         *
-    * A pdf reference manual is also available.  Both are usually delivered   *
-    * to your inbox within 20 minutes to two hours when purchased between 8am *
-    * and 8pm GMT (although please allow up to 24 hours in case of            *
-    * exceptional circumstances).  Thank you for your support!                *
-    *                                                                         *
-    ***************************************************************************
-
-    This file is part of the FreeRTOS distribution.
-
-    FreeRTOS is free software; you can redistribute it and/or modify it under
-    the terms of the GNU General Public License (version 2) as published by the
-    Free Software Foundation AND MODIFIED BY the FreeRTOS exception.
-    ***NOTE*** The exception to the GPL is included to allow you to distribute
-    a combined work that includes FreeRTOS without being obliged to provide the
-    source code for proprietary components outside of the FreeRTOS kernel.
-    FreeRTOS is distributed in the hope that it will be useful, but WITHOUT
-    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-    more details. You should have received a copy of the GNU General Public 
-    License and the FreeRTOS license exception along with FreeRTOS; if not it 
-    can be viewed here: http://www.freertos.org/a00114.html and also obtained 
-    by writing to Richard Barry, contact details for whom are available on the
-    FreeRTOS WEB site.
-
-    1 tab == 4 spaces!
-
-    http://www.FreeRTOS.org - Documentation, latest information, license and
-    contact details.
-
-    http://www.SafeRTOS.com - A version that is certified for use in safety
-    critical systems.
-
-    http://www.OpenRTOS.com - Commercial support, development, porting,
-    licensing and training services.
-*/
-
-
-/*
- * Creates all the demo application tasks, then starts the scheduler.  The WEB
- * documentation provides more details of the standard demo application tasks
- * (which just exist to test the kernel port and provide an example of how to use
- * each FreeRTOS API function).
- *
- * In addition to the standard demo tasks, the following tasks and tests are
- * defined and/or created within this file:
- *
- * "Check" hook -  This only executes fully every five seconds from the tick
- * hook.  Its main function is to check that all the standard demo tasks are
- * still operational.  The status can be viewed using on the Task Stats page
- * served by the WEB server.
- *
- * "uIP" task -  This is the task that handles the uIP stack.  All TCP/IP
- * processing is performed in this task.
- * 
- * "USB" task - Enumerates the USB device as a CDC class, then echoes back all
- * received characters with a configurable offset (for example, if the offset
- * is 1 and 'A' is received then 'B' will be sent back).  A dumb terminal such
- * as Hyperterminal can be used to talk to the USB task.
- */
-
 #define DEBUG 1
+#include "lpc17xx_gpio.h"
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
@@ -90,13 +14,12 @@ You should read the note above.
 
 // Define whether or not to use my LCD task
 #define USE_MTJ_LCD 1
-// Define whether to use my temperature sensor read task (the sensor is on the PIC v4 demo board, so if that isn't connected
-//   then this should be off
-#define USE_MTJ_V4Temp_Sensor 0
 // Define whether to use my infrared sensor task
 #define USE_INFRARED_SENSOR 1
 // Define whether to use my motor task
-#define USE_MOTOR_TASK 1
+#define USE_MOTOR_TASK 0
+// Define whether to use my navigation task
+#define USE_NAVIGATION_TASK 1
 // Define whether to use my USB task
 #define USE_MTJ_USE_USB 0
 
@@ -105,8 +28,8 @@ You should read the note above.
 // Include file for MTJ's LCD & i2cTemp tasks
 #include "vtUtilities.h"
 #include "lcdTask.h"
-#include "i2cTemp.h"
 #include "i2cInfrared.h"
+#include "navigation.h"
 #include "motor.h"
 #include "vtI2C.h"
 #include "myTimers.h"
@@ -137,6 +60,7 @@ tick hook). */
 #define mainUSB_TASK_PRIORITY				( tskIDLE_PRIORITY)
 #define mainI2CMONITOR_TASK_PRIORITY		( tskIDLE_PRIORITY)
 #define mainCONDUCTOR_TASK_PRIORITY			( tskIDLE_PRIORITY)
+#define mainNAVIGATION_TASK_PRIORITY		( tskIDLE_PRIORITY)
 
 /* The WEB server has a larger stack as it utilises stack hungry string
 handling library calls. */
@@ -174,26 +98,22 @@ char *pcGetTaskStatusMessage( void );
 /* Holds the status message displayed by the WEB server. */
 static char *pcStatusMessage = mainPASS_STATUS_MESSAGE;
 
-
-#if USE_MTJ_V4Temp_Sensor == 1
 // data structure required for one I2C task
 static vtI2CStruct vtI2C0;
-// data structure required for one temperature sensor task
-static vtTempStruct tempSensorData;
-#endif
 
 #if USE_INFRARED_SENSOR == 1
-// data structure required for one I2C task
-static vtI2CStruct vtI2C0;
 // data structure required for one infrared sensor task
 static vtInfraredStruct infraredSensorData;
 #endif
 
-#if USE_MOTOR_TASK == 0
-// data structure required for one I2C task
-static vtI2CStruct vtI2C0;
+#if USE_MOTOR_TASK == 1
 // data structure required for one motor task
 static vtMotorStruct motorData;
+#endif
+
+#if USE_NAVIGATION_TASK == 1
+// data structure required for one navigation task
+static vtNavStruct navData;
 #endif
 
 #if USE_MTJ_LCD == 1
@@ -236,49 +156,79 @@ int main( void )
 	//  how to use a timer and how to send messages from that timer.
 	startTimerForLCD(&vtLCDdata);
 	#endif
+
+	#if USE_NAVIGATION_TASK == 1
+	#if	USE_MTJ_LCD == 1 && USE_INFRARED_SENSOR == 1 && USE_MOTOR_TASK == 1
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,&vtLCDdata,&infraredSensorData,&motorData);
+	#endif
+	#if	USE_MTJ_LCD == 1 && USE_INFRARED_SENSOR == 1 && USE_MOTOR_TASK == 0
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,&vtLCDdata,&infraredSensorData,NULL);
+	#endif
+	#if	USE_MTJ_LCD == 1 && USE_INFRARED_SENSOR == 0 && USE_MOTOR_TASK == 1
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,&vtLCDdata,NULL,&motorData);
+	#endif
+	#if	USE_MTJ_LCD == 1 && USE_INFRARED_SENSOR == 0 && USE_MOTOR_TASK == 0
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,&vtLCDdata,NULL,NULL);
+	#endif
+	#if	USE_MTJ_LCD == 0 && USE_INFRARED_SENSOR == 1 && USE_MOTOR_TASK == 1
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,NULL,&infraredSensorData,&motorData);
+	#endif
+	#if	USE_MTJ_LCD == 0 && USE_INFRARED_SENSOR == 1 && USE_MOTOR_TASK == 0
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,NULL,&infraredSensorData,NULL);
+	#endif
+	#if	USE_MTJ_LCD == 0 && USE_INFRARED_SENSOR == 0 && USE_MOTOR_TASK == 1
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,NULL,NULL,&motorData);
+	#endif
+	#if	USE_MTJ_LCD == 0 && USE_INFRARED_SENSOR == 0 && USE_MOTOR_TASK == 0
+	vStartNavTask(&navData,mainNAVIGATION_TASK_PRIORITY,NULL,NULL,NULL);
+	#endif
+	#endif
 	
-	#if USE_INFRARED_SENSOR == 1
-	// MTJ: My i2cSensor task
 	// First, start up an I2C task and associate it with the I2C0 hardware on the ARM (there are 3 I2C devices, we need this one)
 	// See vtI2C.h & vtI2C.c for more details on this task and the API to access the task
 	// Initialize I2C0 for I2C0 at an I2C clock speed of 100KHz
 	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000) != vtI2CInitSuccess) {
 		VT_HANDLE_FATAL_ERROR(0);
 	}
+
+	#if USE_INFRARED_SENSOR == 1
+	// My Sensor task
 	// Now, start up the task that is going to handle the infrared sensor sampling (it will talk to the I2C task and LCD task using their APIs)
 	#if USE_MTJ_LCD == 1
-	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
+	#if USE_NAVIGATION_TASK == 1
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&navData);
 	#else
-	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata,NULL);
+	#endif
+	#else
+	#if USE_NAVIGATION_TASK == 1
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL,&navData);
+	#else
+	vStarti2cInfraredTask(&infraredSensorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL,NULL);
+	#endif
 	#endif
 	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
 	startTimerForInfrared(&infraredSensorData);
 	#endif
 
-//	#if USE_MOTOR_TASK == 1
-//	// My Motor task
-//	// First, start up an I2C task and associate it with the I2C0 hardware on the ARM (there are 3 I2C devices, we need this one)
-//	// See vtI2C.h & vtI2C.c for more details on this task and the API to access the task
-//	// Initialize I2C0 for I2C0 at an I2C clock speed of 100KHz
-//	if (vtI2CInit(&vtI2C0,0,mainI2CMONITOR_TASK_PRIORITY,100000) != vtI2CInitSuccess) {
-//		VT_HANDLE_FATAL_ERROR(0);
-//	}
-//	// Now, start up the task that is going to handle the infrared sensor sampling (it will talk to the I2C task and LCD task using their APIs)
-//	#if USE_MTJ_LCD == 1
-//	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
-//	#else
-//	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
-//	#endif
-//	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
-//	startTimerForInfrared(&infraredSensorData);
-//	#endif
+	#if USE_MOTOR_TASK == 1
+	// My Motor task
+	// Now, start up the task that is going to handle the motor control (it will talk to the I2C task and LCD task using their APIs)
+	#if USE_MTJ_LCD == 1
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
+	#else
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
+	#endif
+	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
+	startTimerForMotor(&motorData);
+	#endif
 
-//	#if USE_MOTOR_TASK == 1 && USE_INFRARED_SENSOR == 1
-//	// start up a "conductor" task that will move messages around
-//	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData,&motorData);
-//	#else
+	#if USE_MOTOR_TASK == 1 && USE_INFRARED_SENSOR == 1
+	// start up a "conductor" task that will move messages around
+	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData,&motorData);
+	#else
 	vStartConductorTask(&conductorData,mainCONDUCTOR_TASK_PRIORITY,&vtI2C0,&infraredSensorData,NULL);
-//	#endif
+	#endif
 
     /* Create the USB task. MTJ: This routine has been modified from the original example (which is not a FreeRTOS standard demo) */
 	#if USE_MTJ_USE_USB == 1

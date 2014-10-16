@@ -366,6 +366,11 @@
               <FileType>1</FileType>
               <FilePath>.\MainFiles/i2cInfrared.c</FilePath>
             </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/motor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

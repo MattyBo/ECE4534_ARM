@@ -371,6 +371,11 @@
               <FileType>1</FileType>
               <FilePath>.\MainFiles/motor.c</FilePath>
             </File>
+            <File>
+              <FileName>navigation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MainFiles/navigation.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -14,6 +14,8 @@
 #define vtI2CMsgTypeSensorRead 6
 #define vtI2CMsgTypeMotorCommand 7
 #define vtI2CMsgTypeMotorStatus 8
+#define vtNavMsgSensorData 9
+#define vtNavMsgMotorCmd 10
 // below is not actually an i2c message, but the value is reserved
 #define TempMsgTypeTimer 9
 #define SensorMsgTypeTimer 10

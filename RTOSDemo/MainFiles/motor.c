@@ -51,6 +51,7 @@ void vStartMotorTask(vtMotorStruct *params,unsigned portBASE_TYPE uxPriority, vt
 {
 	// Create the queue that will be used to talk to this task
 	if ((params->inQ = xQueueCreate(vtMotorQLen,sizeof(vtMotorMsg))) == NULL) {
+		printf("error creating motor task\n");
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	/* Start the task */
@@ -65,12 +66,14 @@ void vStartMotorTask(vtMotorStruct *params,unsigned portBASE_TYPE uxPriority, vt
 portBASE_TYPE SendMotorTimerMsg(vtMotorStruct *motorData,portTickType ticksElapsed,portTickType ticksToBlock)
 {
 	if (motorData == NULL) {
+		printf("error sending motor timer message\n");
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	vtMotorMsg motorBuffer;
 	motorBuffer.length = sizeof(ticksElapsed);
 	if (motorBuffer.length > vtMotorMaxLen) {
 		// no room for this message
+		printf("error no room for motor timer message\n");
 		VT_HANDLE_FATAL_ERROR(motorBuffer.length);
 	}
 	memcpy(motorBuffer.buf,(char *)&ticksElapsed,sizeof(ticksElapsed));
@@ -83,14 +86,16 @@ portBASE_TYPE SendMotorValueMsg(vtMotorStruct *motorData,uint8_t msgType,uint8_t
 	vtMotorMsg motorBuffer;
 
 	if (motorData == NULL) {
+		printf("error sending motor message\n");
 		VT_HANDLE_FATAL_ERROR(0);
 	}
 	motorBuffer.length = vtMotorMaxLen;
 	if (motorBuffer.length > vtMotorMaxLen) {
 		// no room for this message
+		printf("error no room for motor message\n");
 		VT_HANDLE_FATAL_ERROR(motorBuffer.length);
 	}
-	memcpy(motorBuffer.buf,values,vtMotorMaxLen);
+	memcpy(motorBuffer.buf,values,vtMotorExpectedLen);
 	motorBuffer.msgType = msgType;
 	return(xQueueSend(motorData->inQ,(void *) (&motorBuffer),ticksToBlock));
 }
@@ -103,13 +108,15 @@ int getMsgType(vtMotorMsg *Buffer)
 }
 
 // I2C commands for the infrared sensor
-const uint8_t i2cCmdMotorMove[]= {0xFE, 0x01, 0x0A};
-const uint8_t i2cCmdMotorError[]= {0xFE, 0xF0, 0x00};
+const uint8_t i2cCmdMotorMove[]= {0xF1, 0x01, 0x0A};
+const uint8_t i2cCmdMotorError[]= {0xF1, 0xF0, 0x00};
 
 void sendErrorMsg(vtI2CStruct *devPtr) {
-	if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorError),i2cCmdMotorError,7) != pdTRUE) {
+	if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorError),i2cCmdMotorError,vtMotorMaxLen) != pdTRUE) {
+		printf("error sending motor error message\n");
 		VT_HANDLE_FATAL_ERROR(0);
 	}
+//	vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorError),i2cCmdMotorError,vtMotorMaxLen);
 }
 // end of I2C command definitions
 
@@ -145,7 +152,9 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 	{
 		// Wait for a message from either a timer or from an I2C operation
 		if (xQueueReceive(param->inQ,(void *) &msgBuffer,portMAX_DELAY) != pdTRUE) {
+			printf("error getting a motor message\n");
 			VT_HANDLE_FATAL_ERROR(0);
+			//continue;
 		}
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
@@ -153,7 +162,7 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 			case MotorMsgTypeTimer: {
 				if (currentState == fsmStateWaitForNav) {
 					// Send a motor command
-					//vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorMove),i2cCmdMotorMove,7);
+					vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorMove),i2cCmdMotorMove,vtMotorMaxLen);
 					currentState = fsmStateMotorStatus;
 				}
 				else if (currentState == fsmStateMotorStatus) {
@@ -165,11 +174,11 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 					#if DEBUG == 1
 					GPIO_ClearValue(0,0x20000);
 					#endif
-					break;
 				} else {
 					// unexpectedly received this message
 					VT_HANDLE_FATAL_ERROR(0);
 				}
+				break;
 			}
 			case vtI2CMsgTypeMotorCommand: {
 				if (currentState == fsmStateWaitForNav) {
@@ -187,7 +196,7 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 					// Check msg integrity. 
 					uint8_t i;
 					uint8_t badMsg = 0;
-					for (i = 1; i < vtMotorMaxLen; i++) {
+					for (i = 1; i < vtMotorExpectedLen; i++) {
 						if (msgBuffer.buf[i] == 0xFF || msgBuffer.buf[i] == 0xFE)  badMsg = 1;
 					}
 					// If we've gotten a bad msg, send an error msg so we get one.
