@@ -41,5 +41,5 @@ ObjectFiles/navigation.o: MainFiles/navigation.c \
  ../FreeRTOS/Source/include/timers.h MainFiles/motor.h \
  ../vtCode/vtI2C/vtI2C.h ../NXPDrivers/include/lpc17xx_i2c.h \
  ../NXPDrivers/include/lpc_types.h ../FreeRTOS/Source/include/projDefs.h \
- MainFiles/i2cInfrared.h MainFiles/i2ctaskmsgtypes.h \
+ MainFiles/i2cInfrared.h MainFiles/i2ctaskmsgtypes.h MainFiles/map.h \
  ../NXPDrivers/include/lpc17xx_gpio.h

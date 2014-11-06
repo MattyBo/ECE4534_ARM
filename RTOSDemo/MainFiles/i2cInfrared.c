@@ -102,7 +102,7 @@ int getMsgType(vtInfraredMsg *Buffer)
 }
 
 // I2C commands for the infrared sensor
-const uint8_t i2cCmdReadVals[]= {0xF0, 0xBB, 0x00};
+const uint8_t i2cCmdReadVals[]= {0xF0, 0xBB};
 
 // end of I2C command definitions
 
@@ -115,6 +115,7 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 	vtI2CStruct *devPtr = param->dev;
 	// Get the LCD information pointer
 	vtLCDStruct *lcdData = param->lcdData;
+	// Get the Navigation task pointer
 	vtNavStruct *navData = param->navData;
 	// String buffer for printing
 	char lcdBuffer[vtLCDMaxLen+1];
@@ -128,7 +129,9 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 	{
 		// Wait for a message from either a timer or from an I2C operation
 		if (xQueueReceive(param->inQ,(void *) &msgBuffer,portMAX_DELAY) != pdTRUE) {
-			VT_HANDLE_FATAL_ERROR(0);
+			printf("error getting sensor msg\n");
+			//VT_HANDLE_FATAL_ERROR(0);
+			continue;
 		}
 
 		// Now, based on the type of the message, we decide on the action to take
@@ -140,8 +143,10 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 				// Send query to the sensors
 				if (vtI2CEnQ(devPtr,vtI2CMsgTypeSensorRead,0x4F,sizeof(i2cCmdReadVals),i2cCmdReadVals,vtInfraredMaxLen) != pdTRUE) {
 					// If we can't get a complete message from the rover in time, give up and try again
+					printf("couldn't get sensor data back in time\n");
 					break;
 				}
+				printf("sent sensor query\n");
 				#if DEBUG == 1
 				GPIO_ClearValue(0,0x20000);
 				#endif
@@ -196,10 +201,11 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 						VT_HANDLE_FATAL_ERROR(0);
 					}
 				}
-
+				
 				break;
 			}
 			default: {
+				printf("bad sensor msg\n");
 				VT_HANDLE_FATAL_ERROR(getMsgType(&msgBuffer));
 				break;
 			}

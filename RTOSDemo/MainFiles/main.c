@@ -17,7 +17,7 @@ You should read the note above.
 // Define whether to use my infrared sensor task
 #define USE_INFRARED_SENSOR 1
 // Define whether to use my motor task
-#define USE_MOTOR_TASK 0
+#define USE_MOTOR_TASK 1
 // Define whether to use my navigation task
 #define USE_NAVIGATION_TASK 1
 // Define whether to use my USB task
@@ -215,9 +215,17 @@ int main( void )
 	// My Motor task
 	// Now, start up the task that is going to handle the motor control (it will talk to the I2C task and LCD task using their APIs)
 	#if USE_MTJ_LCD == 1
-	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata);
+	#if USE_NAVIGATION_TASK == 1
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata,&navData);
 	#else
-	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL);
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,&vtLCDdata,NULL);
+	#endif
+	#else
+	#if USE_NAVIGATION_TASK == 1
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL,&navData);
+	#else
+	vStartMotorTask(&motorData,mainI2CSENSOR_TASK_PRIORITY,&vtI2C0,NULL,NULL);
+	#endif
 	#endif
 	// Here we set up a timer that will send messages to the Infrared sensing task.  The timer will determine how often the sensor is sampled
 	startTimerForMotor(&motorData);

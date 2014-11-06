@@ -2,11 +2,13 @@
 #define MOTOR_TASK_H
 #include "vtI2C.h"
 #include "lcdTask.h"
+#include "navigation.h"
 // Structure used to pass parameters to the task
 // Do not touch...
-typedef struct __MotorStruct {
+typedef struct vtMotorStruct {
 	vtI2CStruct *dev;
 	vtLCDStruct *lcdData;
+	struct vtNavStruct *navData;
 	xQueueHandle inQ;
 } vtMotorStruct;
 // Maximum length of a message that can be received by this task
@@ -18,6 +20,8 @@ typedef struct __MotorStruct {
 #define RIGHT 1
 #define LEFT 2
 #define BACK 3
+#define NOMOVE 4
+#define SPIN 5
 
 // Public API
 //
@@ -27,7 +31,8 @@ typedef struct __MotorStruct {
 //   uxPriority -- the priority you want this task to be run at
 //   i2c: pointer to the data structure for an i2c task
 //   lcd: pointer to the data structure for an LCD task (may be NULL)
-void vStartMotorTask(vtMotorStruct *motorData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd);
+//   nav: pointer to the data structure for a Navigation task (may be NULL)
+void vStartMotorTask(vtMotorStruct *motorData,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd, struct vtNavStruct *nav);
 //
 // Send a timer message to the Motor task
 // Args:

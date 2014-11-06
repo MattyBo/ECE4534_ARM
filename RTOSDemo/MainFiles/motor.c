@@ -47,7 +47,7 @@ static portTASK_FUNCTION_PROTO( motorUpdateTask, pvParameters );
 
 /*-----------------------------------------------------------*/
 // Public API
-void vStartMotorTask(vtMotorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd)
+void vStartMotorTask(vtMotorStruct *params,unsigned portBASE_TYPE uxPriority, vtI2CStruct *i2c,vtLCDStruct *lcd, struct vtNavStruct *nav)
 {
 	// Create the queue that will be used to talk to this task
 	if ((params->inQ = xQueueCreate(vtMotorQLen,sizeof(vtMotorMsg))) == NULL) {
@@ -58,6 +58,7 @@ void vStartMotorTask(vtMotorStruct *params,unsigned portBASE_TYPE uxPriority, vt
 	portBASE_TYPE retval;
 	params->dev = i2c;
 	params->lcdData = lcd;
+	params->navData = nav;
 	if ((retval = xTaskCreate( motorUpdateTask, ( signed char * ) "Motor", i2cSTACK_SIZE, (void *) params, uxPriority, ( xTaskHandle * ) NULL )) != pdPASS) {
 		VT_HANDLE_FATAL_ERROR(retval);
 	}
@@ -108,8 +109,8 @@ int getMsgType(vtMotorMsg *Buffer)
 }
 
 // I2C commands for the infrared sensor
-const uint8_t i2cCmdMotorMove[]= {0xF1, 0x01, 0x0A};
-const uint8_t i2cCmdMotorError[]= {0xF1, 0xF0, 0x00};
+const uint8_t i2cCmdMotorMove[]= {0xF1, 0x01};
+const uint8_t i2cCmdMotorError[]= {0xF1, 0xF0};
 
 void sendErrorMsg(vtI2CStruct *devPtr) {
 	if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorError),i2cCmdMotorError,vtMotorMaxLen) != pdTRUE) {
@@ -135,6 +136,8 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 	vtI2CStruct *devPtr = param->dev;
 	// Get the LCD information pointer
 	vtLCDStruct *lcdData = param->lcdData;
+	// Get the Navigation task pointer
+	vtNavStruct *navData = param->navData;
 	// String buffer for printing
 	char lcdBuffer[vtLCDMaxLen+1];
 	// Buffer for receiving messages
@@ -153,19 +156,14 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 		// Wait for a message from either a timer or from an I2C operation
 		if (xQueueReceive(param->inQ,(void *) &msgBuffer,portMAX_DELAY) != pdTRUE) {
 			printf("error getting a motor message\n");
-			VT_HANDLE_FATAL_ERROR(0);
-			//continue;
+			//VT_HANDLE_FATAL_ERROR(0);
+			continue;
 		}
 
 		// Now, based on the type of the message and the state, we decide on the new state and action to take
 		switch(getMsgType(&msgBuffer)) {
 			case MotorMsgTypeTimer: {
-				if (currentState == fsmStateWaitForNav) {
-					// Send a motor command
-					vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(i2cCmdMotorMove),i2cCmdMotorMove,vtMotorMaxLen);
-					currentState = fsmStateMotorStatus;
-				}
-				else if (currentState == fsmStateMotorStatus) {
+				if (currentState == fsmStateMotorStatus) {
 					#if DEBUG == 1
 					GPIO_SetValue(0,0x20000);
 					#endif
@@ -175,14 +173,20 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 					GPIO_ClearValue(0,0x20000);
 					#endif
 				} else {
-					// unexpectedly received this message
-					VT_HANDLE_FATAL_ERROR(0);
+					// do nothing for now
 				}
 				break;
 			}
 			case vtI2CMsgTypeMotorCommand: {
 				if (currentState == fsmStateWaitForNav) {
-
+					// Send a motor command
+					uint8_t motorCommand[] = {0xF1, msgBuffer.buf[0]};
+					if (vtI2CEnQ(devPtr,vtI2CMsgTypeMotorCommand,0x4F,sizeof(motorCommand),motorCommand,vtMotorMaxLen) != pdTRUE) {
+						printf("problem sending motor command\n");
+						VT_HANDLE_FATAL_ERROR(0);
+					}		
+					printf("sent motor command\n");
+					currentState = fsmStateMotorStatus;
 				}
 				break;
 			}
@@ -190,14 +194,14 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 				if (currentState == fsmStateMotorStatus) {
 					// Ensure msg was intended for this task. 
 					// If not, break out and send an error msg. We should be getting a motor status
-					if (msgBuffer.buf[0] != 0xFE) {
+					if (msgBuffer.buf[0] != 0xF1) {
 						sendErrorMsg(devPtr);
 					}
 					// Check msg integrity. 
 					uint8_t i;
 					uint8_t badMsg = 0;
 					for (i = 1; i < vtMotorExpectedLen; i++) {
-						if (msgBuffer.buf[i] == 0xFF || msgBuffer.buf[i] == 0xFE)  badMsg = 1;
+						if (msgBuffer.buf[i] == 0xF1 || msgBuffer.buf[i] == 0xF0)  badMsg = 1;
 					}
 					// If we've gotten a bad msg, send an error msg so we get one.
 					if (badMsg) {
@@ -206,28 +210,37 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 	
 					direction = msgBuffer.buf[1];
 					distance = msgBuffer.buf[2];
-					
-					#if PRINTF_VERSION == 1
-					printf("Dis %d cm, Dir %d\n",distance,direction);
-					sprintf(lcdBuffer,"Dis %d cm, Dir %d\n",distance,direction);
-					#else
-					// we do not have full printf (so no %f) and therefore need to print out integers
-					printf("Dis %d cm, Dir %d\n",distance,direction);
-					sprintf(lcdBuffer,"Dis %d cm, Dir %d\n",distance,direction);
-					#endif
-					if (lcdData != NULL) {
-						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+					printf("Motor task here, saying that I got a response status of direction %d and distance %d\n",direction,distance);
+					// Send data to navigation task
+					if (navData != NULL) {
+						if (SendNavValueMsg(navData,vtNavMsgMotorData,&msgBuffer.buf[1],portMAX_DELAY) != pdTRUE) {
+							printf("error sending motor data to nav\n");
 							VT_HANDLE_FATAL_ERROR(0);
 						}
 					}
+					printf("sent motor data to nav task\n");
+					
+//					#if PRINTF_VERSION == 1
+//					printf("Dis %d cm, Dir %d\n",distance,direction);
+//					sprintf(lcdBuffer,"Dis %d cm, Dir %d\n",distance,direction);
+//					#else
+//					// we do not have full printf (so no %f) and therefore need to print out integers
+//					printf("Dis %d cm, Dir %d\n",distance,direction);
+//					sprintf(lcdBuffer,"Dis %d cm, Dir %d\n",distance,direction);
+//					#endif
+//					if (lcdData != NULL) {
+//						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+//							VT_HANDLE_FATAL_ERROR(0);
+//						}
+//					}
 				} else {
-					// unexpectedly received this message
-					VT_HANDLE_FATAL_ERROR(0);
+					// do nothing for now
 				}
 				currentState = fsmStateWaitForNav;
 				break;
 			}
 			default: {
+				printf("bad motor msg\n");
 				VT_HANDLE_FATAL_ERROR(getMsgType(&msgBuffer));
 				break;
 			}

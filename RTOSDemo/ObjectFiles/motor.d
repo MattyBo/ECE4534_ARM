@@ -40,5 +40,6 @@ ObjectFiles/motor.o: MainFiles/motor.c \
  ../NXPDrivers/include/lpc17xx_i2c.h ../NXPDrivers/include/lpc_types.h \
  ../FreeRTOS/Source/include/projDefs.h MainFiles/LCDtask.h \
  ../FreeRTOS/Source/include/queue.h ../FreeRTOS/Source/include/timers.h \
- MainFiles/motor.h MainFiles/lcdTask.h MainFiles/I2CTaskMsgTypes.h \
+ MainFiles/motor.h MainFiles/lcdTask.h MainFiles/navigation.h \
+ MainFiles/i2cInfrared.h MainFiles/I2CTaskMsgTypes.h \
  ../NXPDrivers/include/lpc17xx_gpio.h

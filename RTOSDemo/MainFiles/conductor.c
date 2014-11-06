@@ -81,14 +81,19 @@ static portTASK_FUNCTION( vConductorUpdateTask, pvParameters )
 		// This isn't a state machine, it is just acting as a router for messages
 		switch(recvMsgType) {
 			case vtI2CMsgTypeSensorRead: {
+				printf("sending msg from conductor to sensor task\n");
 				SendInfraredValueMsg(infraredData,recvMsgType,Buffer,portMAX_DELAY);
+				printf("sent msg from conductor to sensor task\n");
 				break;
 			}
-			case vtI2CMsgTypeMotorStatus: {
-			 	SendMotorValueMsg(motorData,recvMsgType,Buffer,portMAX_DELAY);
+			case vtI2CMsgTypeMotorCommand: {
+				printf("sending msg from conductor to motor task\n");
+			 	SendMotorValueMsg(motorData,vtI2CMsgTypeMotorStatus,Buffer,portMAX_DELAY);
+				printf("sending msg from conductor to motor task\n");
 				break;
 			}
 			default: {
+				printf("bad conductor msg\n");
 				VT_HANDLE_FATAL_ERROR(recvMsgType);
 				break;
 			}
