@@ -16,7 +16,7 @@
 #include "map.h"
 
 #include "lpc17xx_gpio.h"
-#define DEBUG 0
+#define DEBUG 1
 
 /* *********************************************** */
 // definitions and data structures that are private to this file
@@ -92,9 +92,8 @@ int getMsgType(vtNavMsg *Buffer)
 	return(Buffer->msgType);
 }
 
-// This method figures out where the rover needs to go next. Right now, it simply makes decisions based on the
-// wall around it with no regard to the map.
-uint8_t determineMove(uint8_t front, uint8_t fRight, uint8_t bRight, uint8_t back, uint8_t bLeft, uint8_t fLeft) {
+// This method figures out where the rover needs to go next with no regard to the map.
+uint8_t explore(uint8_t front, uint8_t fRight, uint8_t bRight, uint8_t back, uint8_t bLeft, uint8_t fLeft) {
 	uint8_t move = NOMOVE;
 	// There is a wall in front of me
 	if (front <= MIN_DISTANCE) 
@@ -131,6 +130,11 @@ uint8_t determineMove(uint8_t front, uint8_t fRight, uint8_t bRight, uint8_t bac
 	}
 
 	return move;
+}
+
+uint8_t determineMove(uint8_t front, uint8_t fRight, uint8_t bRight, uint8_t back, uint8_t bLeft, uint8_t fLeft, const WallNode *wallList, const WallNode *currWall) 
+{
+	return NOMOVE;
 }
 
 /*
@@ -184,6 +188,55 @@ WallNode* generateWalls()
 	return head;
 }
 
+WallNode* guessWall(uint8_t lastMove, uint8_t travelDistance, uint8_t front, uint8_t fRight, uint8_t bRight, uint8_t back, uint8_t bLeft, uint8_t fLeft, const WallNode *wallList)
+{
+	WallNode *guess = NULL;
+	WallNode *temp = wallList;
+	WallNode *possibleMatches[numVerticies];
+	uint8_t numPossible = 0;
+	temp = temp->nextWall;
+	
+	// Find all walls that are about the same length that I traveled
+	while (temp != wallList)
+	{
+		if (abs(travelDistance - temp->length) < 1)
+		{
+			possibleMatches[numPossible] = temp;
+			numPossible++;
+		}
+		temp = temp->nextWall;
+	}
+	// If there is more than one wall that has a similar length, check to see if the next wall is in the right place
+//	uint8_t i;
+//	for (i = 0; i < numPossible; i++)
+//	{
+//		temp = possibleMatches[i];
+//		// There is something in front of us
+//		if (uint8_t front <= MIN_DISTANCE)
+//		{
+//			// I'm parallel to the right wall
+//			if (fRight < fLeft)
+//			{
+//				// The next wall makes a right turn
+//				if (temp->endVertex[0] - temp->nextWall->endVertex[0] < 0)
+//				{
+//					if (
+//				}
+//				else // The next wall makes a left turn
+//				{
+//
+//				}
+//			}
+//		}
+//	}
+	if (numPossible == 1)
+	{
+		guess = possibleMatches[0];
+	}
+
+	return guess;
+}
+
 // end of local functions
 
 // Definitions of the states for the FSM below
@@ -193,16 +246,23 @@ const uint8_t fsmStateMoving = 1;
 // This is the actual task that is run
 static portTASK_FUNCTION( navUpdateTask, pvParameters )
 {
+	// Variables to hold the data for each sensor
 	uint8_t distanceFront = 0;
 	uint8_t distanceFRight= 0;
 	uint8_t distanceBRight = 0;
 	uint8_t distanceBack = 0;
 	uint8_t distanceBLeft = 0;
 	uint8_t distanceFLeft = 0;
+	// The current move for the rover to execute
 	uint8_t currentMove = NOMOVE;
+	// The last move the rover executed
 	uint8_t lastMove = NOMOVE;
+	// The distance the rover traveled in the last move
 	uint8_t travelDistance = 0;
-	WallNode *currWall = NULL;
+	// Flag to represent if the rover has discovered where it is in the map yet
+	uint8_t exploration = 1;
+	// The current FSM state
+	uint8_t currentState;
 
 	// Get the parameters
 	vtNavStruct *param = (vtNavStruct *) pvParameters;
@@ -216,11 +276,11 @@ static portTASK_FUNCTION( navUpdateTask, pvParameters )
 	char lcdBuffer[vtLCDMaxLen+1];
 	// Buffer for receiving messages
 	vtNavMsg msgBuffer;
-	uint8_t currentState;
 
 	// Before we can start the task, we need to interpret our map data
 	// This variable will hold the first wall and will not change.
 	const WallNode *wallList = generateWalls();
+	WallNode *currWall = NULL;
 
 	#if DEBUG == 1
 	// Check wall list
@@ -259,47 +319,19 @@ static portTASK_FUNCTION( navUpdateTask, pvParameters )
 					distanceBack = msgBuffer.buf[3];
 					distanceBLeft = msgBuffer.buf[4];
 					distanceFLeft = msgBuffer.buf[5];
-					currentMove = determineMove(distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft);
-					if (lcdData != NULL) {
-						sprintf(lcdBuffer,"%d,%d,%d,%d,%d,%d",distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft);
-						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+
+					// Send a NOMOVE to the rover so it sends a response back
+					// this is the only way I am able to use the updated sensor
+					// readings in the case below
+					uint8_t values[] = {currentMove};
+					if (motors != NULL) {
+						if (SendMotorValueMsg(motors,vtI2CMsgTypeMotorCommand,values,portMAX_DELAY) != pdTRUE) {
+							printf("error sending NOMOVE msg from nav to motor task\n");
 							VT_HANDLE_FATAL_ERROR(0);
 						}
-						switch (currentMove)
-						{
-						    case NOMOVE:
-								sprintf(lcdBuffer, "I can't move");
-								break;
-							case FORWARD:
-								sprintf(lcdBuffer, "Move forward");
-								break;
-							case LEFT:
-								sprintf(lcdBuffer, "Turn left");
-								break;
-							case RIGHT:
-								sprintf(lcdBuffer, "Turn right");
-								break;
-							case BACK:
-								sprintf(lcdBuffer, "Turn around");
-								break;
-							default:
-								sprintf(lcdBuffer, "CONFUSION :(");
-								break;
-						}
-						if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
-							printf("error with nav printing lcd msg?\n");
-							VT_HANDLE_FATAL_ERROR(0);
-						}
-						uint8_t values[] = {currentMove, travelDistance};
-						if (motors != NULL) {
-							if (SendMotorValueMsg(motors,vtI2CMsgTypeMotorCommand,values,portMAX_DELAY) != pdTRUE) {
-								printf("error sending msg from nav to motor task\n");
-								VT_HANDLE_FATAL_ERROR(0);
-							}
-							printf("sent a msg from nav to motor task\n");
-						}
-						currentState = fsmStateMoving;
 					}
+					
+					currentState = fsmStateMoving;
 				}
 				break;
 			}
@@ -308,7 +340,74 @@ static portTASK_FUNCTION( navUpdateTask, pvParameters )
 				{
 					lastMove = msgBuffer.buf[0];
 					travelDistance = msgBuffer.buf[1];
-					printf("recieved distance report from mototrs\n");
+					if (exploration) // In exploration mode, we are only trying to figure out where we are
+					{
+						currWall = guessWall(lastMove,travelDistance,distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft,wallList);
+						if (currWall == NULL)
+						{
+							currentMove = explore(distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft);
+							if (lcdData != NULL) {
+//								sprintf(lcdBuffer,"%d,%d,%d,%d,%d,%d",distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft);
+//								if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+//									VT_HANDLE_FATAL_ERROR(0);
+//								}
+//								switch (currentMove)
+//								{
+//								    case NOMOVE:
+//										sprintf(lcdBuffer, "I can't move");
+//										break;
+//									case FORWARD:
+//										sprintf(lcdBuffer, "Move forward");
+//										break;
+//									case LEFT:
+//										sprintf(lcdBuffer, "Turn left");
+//										break;
+//									case RIGHT:
+//										sprintf(lcdBuffer, "Turn right");
+//										break;
+//									case BACK:
+//										sprintf(lcdBuffer, "Turn around");
+//										break;
+//									default:
+//										sprintf(lcdBuffer, "CONFUSION :(");
+//										break;
+//								}
+//								if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+//									VT_HANDLE_FATAL_ERROR(0);
+//								}
+								sprintf(lcdBuffer, "Still exploring");
+								if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+									VT_HANDLE_FATAL_ERROR(0);
+								}
+							}
+						}
+						else
+						{
+							printf("I am along side the %d wall\n",currWall->length);
+							if (lcdData != NULL) {
+								sprintf(lcdBuffer, "Next to the %d wall",currWall->length);
+								if (SendLCDPrintMsg(lcdData,strnlen(lcdBuffer,vtLCDMaxLen),lcdBuffer,portMAX_DELAY) != pdTRUE) {
+									VT_HANDLE_FATAL_ERROR(0);
+								}
+							}
+							//exploration = 0;
+							currWall = NULL;
+						}
+					}
+					if (!exploration) // In navigation mode, we are determining where to move next.
+					{
+						//currentMove = determineMove(distanceFront,distanceFRight,distanceBRight,distanceBack,distanceBLeft,distanceFLeft,wallList,currWall);
+						// For now just die 
+						//VT_HANDLE_FATAL_ERROR(0);
+					}
+
+//					uint8_t values[] = {currentMove};
+//					if (motors != NULL) {
+//						if (SendMotorValueMsg(motors,vtI2CMsgTypeMotorCommand,values,portMAX_DELAY) != pdTRUE) {
+//							printf("error sending msg from nav to motor task\n");
+//							VT_HANDLE_FATAL_ERROR(0);
+//						}
+//					}
 					currentState = fsmStateWaitForSensors;
 				}
 				break;

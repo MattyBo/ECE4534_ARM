@@ -185,7 +185,6 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 						printf("problem sending motor command\n");
 						VT_HANDLE_FATAL_ERROR(0);
 					}		
-					printf("sent motor command\n");
 					currentState = fsmStateMotorStatus;
 				}
 				break;
@@ -210,7 +209,6 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 	
 					direction = msgBuffer.buf[1];
 					distance = msgBuffer.buf[2];
-					printf("Motor task here, saying that I got a response status of direction %d and distance %d\n",direction,distance);
 					// Send data to navigation task
 					if (navData != NULL) {
 						if (SendNavValueMsg(navData,vtNavMsgMotorData,&msgBuffer.buf[1],portMAX_DELAY) != pdTRUE) {
@@ -218,7 +216,6 @@ static portTASK_FUNCTION( motorUpdateTask, pvParameters )
 							VT_HANDLE_FATAL_ERROR(0);
 						}
 					}
-					printf("sent motor data to nav task\n");
 					
 //					#if PRINTF_VERSION == 1
 //					printf("Dis %d cm, Dir %d\n",distance,direction);

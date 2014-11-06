@@ -1044,3 +1044,675 @@ MainFiles/navigation.c(205): warning: unused variable 'currWall'
 linking...
 Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
 ".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(101): error: expected expression before 'if'
+MainFiles/navigation.c(135): error: expected expression before '}' token
+MainFiles/navigation.c(98): warning: unused variable 'move'
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(206): error: 'bool' undeclared (first use in this function)
+MainFiles/navigation.c(206): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/navigation.c(206): error: expected ';' before 'exploration'
+MainFiles/navigation.c(225): warning: unused variable 'wallList'
+MainFiles/navigation.c(212): warning: unused variable 'sensors'
+MainFiles/navigation.c(207): warning: unused variable 'currWall'
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(135): warning: control reaches end of non-void function
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(101): error: expected expression before 'if'
+MainFiles/navigation.c(135): error: expected expression before '}' token
+MainFiles/navigation.c(98): warning: unused variable 'move'
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(206): error: 'boolean' undeclared (first use in this function)
+MainFiles/navigation.c(206): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/navigation.c(206): error: expected ';' before 'exploration'
+MainFiles/navigation.c(225): warning: unused variable 'wallList'
+MainFiles/navigation.c(212): warning: unused variable 'sensors'
+MainFiles/navigation.c(207): warning: unused variable 'currWall'
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(135): warning: control reaches end of non-void function
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(101): error: expected expression before 'if'
+MainFiles/navigation.c(135): error: expected expression before '}' token
+MainFiles/navigation.c(98): warning: unused variable 'move'
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(225): warning: unused variable 'wallList'
+MainFiles/navigation.c(212): warning: unused variable 'sensors'
+MainFiles/navigation.c(207): warning: unused variable 'currWall'
+MainFiles/navigation.c(206): warning: unused variable 'exploration'
+MainFiles/navigation.c: In function 'determineMove':
+MainFiles/navigation.c(135): warning: control reaches end of non-void function
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(223): warning: unused variable 'wallList'
+MainFiles/navigation.c(210): warning: unused variable 'sensors'
+MainFiles/navigation.c(205): warning: unused variable 'currWall'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(325): error: expected declaration or statement at end of input
+MainFiles/navigation.c(223): warning: unused variable 'wallList'
+MainFiles/navigation.c(210): warning: unused variable 'sensors'
+MainFiles/navigation.c(205): warning: unused variable 'currWall'
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(223): warning: unused variable 'wallList'
+MainFiles/navigation.c(210): warning: unused variable 'sensors'
+MainFiles/navigation.c(205): warning: unused variable 'currWall'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(268): warning: implicit declaration of function 'determineMove'
+MainFiles/navigation.c(210): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 3 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(273): warning: passing argument 7 of 'determineMove' discards qualifiers from pointer target type
+MainFiles/navigation.c(135): error: note: expected 'struct WallNode *' but argument is of type 'const struct WallNode *'
+MainFiles/navigation.c(215): warning: unused variable 'sensors'
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(215): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(221): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(221): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(285): error: 'navData' undeclared (first use in this function)
+MainFiles/navigation.c(285): error: note: each undeclared identifier is reported only once for each function it appears in
+MainFiles/navigation.c(236): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(234): warning: unused variable 'lcdData'
+MainFiles/navigation.c(232): warning: unused variable 'motors'
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(236): warning: unused variable 'lcdBuffer'
+MainFiles/navigation.c(234): warning: unused variable 'lcdData'
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(356): error: expected declaration or statement at end of input
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+Target not created
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 2 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(230): warning: unused variable 'sensors'
+MainFiles/navigation.c(223): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 3 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(243): warning: unused variable 'sensors'
+MainFiles/navigation.c(236): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(271): warning: unused variable 'sensors'
+MainFiles/navigation.c(264): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(386): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(271): warning: unused variable 'sensors'
+MainFiles/navigation.c(264): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(387): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling list.c...
+compiling queue.c...
+compiling tasks.c...
+compiling port.c...
+compiling timers.c...
+compiling main.c...
+compiling i2cTemp.c...
+MainFiles/i2cTemp.c: In function 'vi2cTempUpdateTask':
+MainFiles/i2cTemp.c(238): warning: format '%d' expects type 'int', but argument 2 has type 'long int'
+MainFiles/i2cTemp.c(238): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(238): warning: format '%d' expects type 'int', but argument 2 has type 'long int'
+MainFiles/i2cTemp.c(238): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(239): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(239): warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+MainFiles/i2cTemp.c(239): warning: format '%d' expects type 'int', but argument 3 has type 'long int'
+MainFiles/i2cTemp.c(239): warning: format '%d' expects type 'int', but argument 4 has type 'long int'
+compiling vtUtilities.c...
+compiling ParTest.c...
+compiling LCDtask.c...
+compiling myTimers.c...
+compiling conductor.c...
+MainFiles/conductor.c: In function 'vConductorUpdateTask':
+MainFiles/conductor.c(60): warning: unused variable 'valPtr'
+compiling i2cInfrared.c...
+MainFiles/i2cInfrared.c: In function 'vi2cSensorUpdateTask':
+MainFiles/i2cInfrared.c(121): warning: unused variable 'lcdBuffer'
+MainFiles/i2cInfrared.c(117): warning: unused variable 'lcdData'
+compiling motor.c...
+MainFiles/motor.c: In function 'motorUpdateTask':
+MainFiles/motor.c(142): warning: unused variable 'lcdBuffer'
+MainFiles/motor.c(138): warning: unused variable 'lcdData'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(387): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+compiling map.c...
+compiling syscalls.c...
+compiling system_LPC17xx.c...
+assembling startup_LPC17xx.s...
+compiling USB_CDC.c...
+compiling usbcontrol.c...
+compiling usbhw_lpc.c...
+compiling usbinit.c...
+compiling usbstdreq.c...
+compiling BlockQ.c...
+compiling blocktim.c...
+compiling flash.c...
+compiling GenQTest.c...
+compiling integer.c...
+compiling PollQ.c...
+compiling QPeek.c...
+compiling recmutex.c...
+compiling semtest.c...
+compiling emac.c...
+compiling httpd.c...
+compiling httpd-cgi.c...
+compiling httpd-fs.c...
+compiling http-strings.c...
+compiling uIP_Task.c...
+compiling psock.c...
+compiling timer.c...
+compiling uip_arp.c...
+compiling uip.c...
+compiling vtSSP.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling lpc17xx_clkpwr.c...
+compiling lpc17xx_i2c.c...
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_Init':
+../NXPDrivers/source/lpc17xx_i2c.c(213): warning: 'temp' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_i2c.c: In function 'I2C_SlaveTransferData':
+../NXPDrivers/source/lpc17xx_i2c.c(985): warning: 'CodeStatus' may be used uninitialized in this function
+compiling lpc17xx_libcfg_default.c...
+compiling lpc17xx_pinsel.c...
+compiling lpc17xx_gpio.c...
+compiling lpc17xx_ssp.c...
+../NXPDrivers/source/lpc17xx_ssp.c: In function 'SSP_ReadWrite':
+../NXPDrivers/source/lpc17xx_ssp.c(342): warning: 'rdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(343): warning: 'wdata8' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(344): warning: 'rdata16' may be used uninitialized in this function
+../NXPDrivers/source/lpc17xx_ssp.c(345): warning: 'wdata16' may be used uninitialized in this function
+compiling vtI2C.c...
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 24 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(387): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(387): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(387): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling conductor.c...
+MainFiles/conductor.c: In function 'vConductorUpdateTask':
+MainFiles/conductor.c(60): warning: unused variable 'valPtr'
+compiling i2cInfrared.c...
+MainFiles/i2cInfrared.c: In function 'vi2cSensorUpdateTask':
+MainFiles/i2cInfrared.c(121): warning: unused variable 'lcdBuffer'
+MainFiles/i2cInfrared.c(117): warning: unused variable 'lcdData'
+compiling motor.c...
+MainFiles/motor.c: In function 'motorUpdateTask':
+MainFiles/motor.c(142): warning: unused variable 'lcdBuffer'
+MainFiles/motor.c(138): warning: unused variable 'lcdData'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(386): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 11 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(386): warning: passing argument 2 of 'sprintf' makes pointer from integer without a cast
+c:\program files\codesourcery\sourcery g++ lite\bin\../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/include/stdio.h:262:5: note: expected 'const char *' but argument is of type 'int'
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Build target 'WebServerELF'
+compiling LCDtask.c...
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling LCDtask.c...
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling LCDtask.c...
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 5 Warning(s).
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Build target 'WebServerELF'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cInfrared.c...
+MainFiles/i2cInfrared.c: In function 'vi2cSensorUpdateTask':
+MainFiles/i2cInfrared.c(121): warning: unused variable 'lcdBuffer'
+MainFiles/i2cInfrared.c(117): warning: unused variable 'lcdData'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 6 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Build target 'WebServerELF'
+compiling i2cInfrared.c...
+MainFiles/i2cInfrared.c: In function 'vi2cSensorUpdateTask':
+MainFiles/i2cInfrared.c(121): warning: unused variable 'lcdBuffer'
+MainFiles/i2cInfrared.c(117): warning: unused variable 'lcdData'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(289): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(272): warning: unused variable 'sensors'
+MainFiles/navigation.c(265): warning: unused variable 'initialSpot'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 7 Warning(s).
+Build target 'WebServerELF'
+compiling navigation.c...
+MainFiles/navigation.c: In function 'guessWall':
+MainFiles/navigation.c(194): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c: In function 'navUpdateTask':
+MainFiles/navigation.c(287): warning: initialization discards qualifiers from pointer target type
+MainFiles/navigation.c(270): warning: unused variable 'sensors'
+linking...
+Warning: c:/program files/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/bin/ld.exe: Warning: size of symbol `i2cCmdReadVals' changed from 1 in ./objectfiles/i2ctemp.o to 2 in ./objectfiles/i2cinfrared.o
+".\ObjectFiles\RTOSDemo.elf" - 0 Error(s), 4 Warning(s).
+Load "C:\\Users\\ECE4534\\Documents\\GitHub\\ECE4534_ARM\\RTOSDemo\\ObjectFiles\\RTOSDemo.ELF" 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.

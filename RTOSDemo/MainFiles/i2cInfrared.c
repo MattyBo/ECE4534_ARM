@@ -15,7 +15,7 @@
 #include "I2CTaskMsgTypes.h"
 
 #include "lpc17xx_gpio.h"
-#define DEBUG 1
+#define DEBUG 0
 
 /* *********************************************** */
 // definitions and data structures that are private to this file
@@ -146,7 +146,6 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 					printf("couldn't get sensor data back in time\n");
 					break;
 				}
-				printf("sent sensor query\n");
 				#if DEBUG == 1
 				GPIO_ClearValue(0,0x20000);
 				#endif
@@ -168,11 +167,7 @@ static portTASK_FUNCTION( vi2cSensorUpdateTask, pvParameters )
 					break;
 				}
 
-				#if PRINTF_VERSION == 1
-				printf("Distance1 %d inches\n",distance1);
-				sprintf(lcdBuffer,"d= %f inches",distance1);
-				#else
-				// we do not have full printf (so no %f) and therefore need to print out integers
+				#if DEBUG == 1
 				printf("Distance1 %d inches\n",msgBuffer.buf[1]);
 				printf("Distance2 %d inches\n",msgBuffer.buf[2]);
 				printf("Distance3 %d inches\n",msgBuffer.buf[3]);

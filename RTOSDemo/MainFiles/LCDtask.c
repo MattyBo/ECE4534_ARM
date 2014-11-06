@@ -207,7 +207,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 	srand((unsigned) 55); // initialize the random number generator to the same seed for repeatability
 	#endif
 
-	curLine = 8;
+	curLine = 9;
 	// This task should never exit
 	for(;;)
 	{	
@@ -246,7 +246,7 @@ static portTASK_FUNCTION( vLCDUpdateTask, pvParameters )
 			GLCD_DisplayString(curLine,0,1,(unsigned char *)lineBuffer);
 			curLine++;
 			if (curLine == lcdNUM_LINES) {
-				curLine = 8;
+				curLine = 9;
 			}
 			break;
 		}
